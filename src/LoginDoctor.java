@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class LoginDoctor {
     private int id;
     private String name;
-    Menu m1 = new Menu();
+    Menu menuDoctors = new Menu();
     protected void verify() {
         System.out.println("Enter ID:");
         Scanner sc = new Scanner(System.in);
@@ -14,6 +14,6 @@ public class LoginDoctor {
         showMenu();
     }
     public void showMenu(){
-        m1.showMenu();
+        menuDoctors.showMenu();
     }
 }

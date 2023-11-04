@@ -7,7 +7,7 @@ public class Login {
         Scanner sc = new Scanner(System.in);
         String choice;
         do {
-            choice = sc.next();
+            choice = sc.nextLine();
             switch (choice) {
                 case "1":
                     LoginDoctor loginDoctor = new LoginDoctor();
