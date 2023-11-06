@@ -1,8 +1,10 @@
+package Doctors;
+
 public class Doctor {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String speciality;
+    protected int id;
+    protected String firstName;
+    protected String lastName;
+    protected String speciality;
 
     public Doctor(int id, String firstName, String lastName, String speciality){
         this.id = id;
