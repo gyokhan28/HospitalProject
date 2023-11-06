@@ -9,7 +9,6 @@ public class Patient {
         this.lastName = lastName;
         this.age = age;
     }
-
     public int getId() {
         return id;
     }
