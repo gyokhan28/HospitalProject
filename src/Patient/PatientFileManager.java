@@ -1,10 +1,12 @@
+package Patient;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientFileManager implements PatientLoader{
+public class PatientFileManager implements PatientLoader {
     @Override
     public List<Patient> loadPatients(String fileName) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
