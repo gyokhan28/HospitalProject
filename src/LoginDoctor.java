@@ -14,7 +14,7 @@ public class LoginDoctor {
     }
 
     protected void verify() {
-        System.out.println("Enter doctor ID:");
+        System.out.print("Enter doctor ID:");
         Scanner sc = new Scanner(System.in);
         int id = 0;
         boolean formatFlag = false;
@@ -27,8 +27,19 @@ public class LoginDoctor {
                 sc.next();
             }
         }
-        System.out.println("Enter name:");
+        System.out.print("Enter name:");
         sc.nextLine();
         String name = sc.nextLine();
+        boolean isFound = false;
+        for (Doctor doctor : doctorList) {
+            if (id == doctor.getId() && name.equalsIgnoreCase(doctor.getFirstName())) {
+                System.out.println("Welcome "+doctor.getFirstName());
+                isFound = true;
+            }
+        }
+        if(!isFound){
+            System.out.println("Incorrect ID/Name!");
+            verify();
+        }
     }
 }

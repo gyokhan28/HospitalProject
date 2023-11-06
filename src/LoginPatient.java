@@ -31,9 +31,9 @@ public class LoginPatient {
         System.out.println("Enter name:");
         sc.nextLine();
         String name = sc.nextLine();
-        for (Patient patientsList : patientList) {
-            if (id == (patientsList.getId()) && name.equalsIgnoreCase(patientsList.getFirstName())) {
-                System.out.println("Welcome " + patientsList.getFirstName());
+        for (Patient patient : patientList) {
+            if (id == (patient.getId()) && name.equalsIgnoreCase(patient.getFirstName())) {
+                System.out.println("Welcome " + patient.getFirstName());
                 return;
             }
         }
