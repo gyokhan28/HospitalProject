@@ -1,3 +1,7 @@
+package Doctors;
+
+import Doctors.DoctorLoader;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

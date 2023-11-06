@@ -1,3 +1,8 @@
+package Doctors;
+
+import Doctors.DoctorFileManager;
+import Doctors.DoctorMenu;
+
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -33,8 +38,8 @@ public class LoginDoctor {
         boolean isFound = false;
         for (Doctor doctor : doctorList) {
             if (id == doctor.getId() && name.equalsIgnoreCase(doctor.getFirstName())) {
-                System.out.println("Welcome "+doctor.getFirstName());
                 isFound = true;
+                DoctorMenu doctorMenu = new DoctorMenu(doctor.getId(),doctor.getFirstName(), doctor.getLastName(),doctorList);
             }
         }
         if(!isFound){

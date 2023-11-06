@@ -1,9 +1,10 @@
+import Doctors.LoginDoctor;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Login {
     public void showMainLogin() throws IOException {
-        WelcomeLogo.printWelcomeLogo();
         System.out.print("How would you like to sign up as? (1-Doctor/2-Patient):");
         Scanner sc = new Scanner(System.in);
         String choice;
