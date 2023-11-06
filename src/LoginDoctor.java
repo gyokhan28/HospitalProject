@@ -6,18 +6,19 @@ import java.util.Scanner;
 public class LoginDoctor {
     DoctorFileManager doctorFileManager;
     protected List<Doctor> doctorList;
+
     public LoginDoctor() throws IOException {
         doctorFileManager = new DoctorFileManager();
         doctorList = doctorFileManager.loadDoctors("Doctors.csv");
         verify();
     }
 
-    protected void verify(){
+    protected void verify() {
         System.out.println("Enter doctor ID:");
         Scanner sc = new Scanner(System.in);
         int id = 0;
         boolean formatFlag = false;
-        while(!formatFlag) {
+        while (!formatFlag) {
             try {
                 id = sc.nextInt();
                 formatFlag = true;

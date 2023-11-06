@@ -14,6 +14,7 @@ public class PatientFileManager implements PatientLoader{
             String[] info = line.split(",");
             patientList.add(new Patient(Integer.parseInt(info[0]), info[1], info[2], Integer.parseInt(info[3])));
         }
+
         return patientList;
     }
 }

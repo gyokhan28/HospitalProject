@@ -14,6 +14,7 @@ public class DoctorFileManager implements DoctorLoader {
             String[] info = line.split(",");
             doctorList.add(new Doctor(Integer.parseInt(info[0]), info[1], info[2], info[3]));
         }
+
         return doctorList;
     }
 }
