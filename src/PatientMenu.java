@@ -1,7 +1,3 @@
-package Patient;
-
-import Doctors.Doctor;
-
 import java.util.List;
 import java.util.Scanner;
 

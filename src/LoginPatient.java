@@ -1,7 +1,3 @@
-package Patient;
-
-import Patient.Patient;
-
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -10,6 +6,7 @@ import java.util.Scanner;
 public class LoginPatient {
     PatientFileManager patientFileManager;
     protected List<Patient> patientList;
+    Verifier verifier;
 
     public LoginPatient() throws IOException {
         patientFileManager = new PatientFileManager();
@@ -36,7 +33,7 @@ public class LoginPatient {
         String name = sc.nextLine();
         for (Patient patient : patientList) {
             if (id == (patient.getId()) && name.equalsIgnoreCase(patient.getFirstName())) {
-                PatientMenu patientMenu = new PatientMenu(patient.getId(), patient.getFirstName(),patient.getLastName(),patientList);
+                PatientMenu patientMenu = new PatientMenu(patient.getId(), patient.getFirstName(), patient.getLastName(), patientList);
                 return;
             }
         }

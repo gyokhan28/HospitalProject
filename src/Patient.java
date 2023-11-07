@@ -1,5 +1,3 @@
-package Patient;
-
 public class Patient {
     private int id;
     private String firstName;
