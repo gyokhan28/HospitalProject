@@ -1,5 +1,3 @@
-package Doctors;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,18 +11,15 @@ public class DoctorMenu {
         this.firstName = firstName;
         this.lastName = lastName;
         this.doctorList = doctorList;
-        showMenu();
     }
-
     public void showMenu() {
         System.out.println("Logged in as " + firstName + " " + lastName + "!");
         System.out.println("1.Show reserved appointments for medical examination");
         System.out.println("2.Sort reserved examinations");
         System.out.println("3.Group patients");
-        chooseAnOption();
+        selectMenuOption();
     }
-
-    public void chooseAnOption() {
+    public void selectMenuOption() {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         System.out.print("Enter your choice: ");
