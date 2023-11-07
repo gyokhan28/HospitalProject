@@ -36,7 +36,7 @@ public class LoginPatient {
         String name = sc.nextLine();
         for (Patient patient : patientList) {
             if (id == (patient.getId()) && name.equalsIgnoreCase(patient.getFirstName())) {
-                PatientMenu patientMenu = new PatientMenu(id,patient.getFirstName(),patient.getLastName(),patientList);
+                PatientMenu patientMenu = new PatientMenu(patient.getId(), patient.getFirstName(),patient.getLastName(),patientList);
                 return;
             }
         }
