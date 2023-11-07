@@ -36,9 +36,11 @@ public class LoginPatient {
         String name = sc.nextLine();
         for (Patient patient : patientList) {
             if (id == (patient.getId()) && name.equalsIgnoreCase(patient.getFirstName())) {
-                System.out.println("Welcome " + patient.getFirstName());
+                PatientMenu patientMenu = new PatientMenu(patient.getId(), patient.getFirstName(),patient.getLastName(),patientList);
                 return;
             }
         }
+        System.out.println("Incorrect ID or patientname! Please try again!");
+        verify();
     }
 }
