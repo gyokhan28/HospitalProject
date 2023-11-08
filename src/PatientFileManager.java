@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientFileManager implements PatientLoader {
-    @Override
+public class PatientFileManager {
+
     public List<Patient> loadPatients(String fileName) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
         List<Patient> patientList = new ArrayList<>();
