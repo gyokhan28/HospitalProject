@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -6,6 +7,7 @@ public class PatientMenu {
     protected String firstName, lastName;
 
     private List<Patient> patientList;
+    private List<DoctorsAppointment>doctorsAppointmentList;
 
     public PatientMenu(int id, String firstName, String lastName, List<Patient> patientList) {
         this.id = id;
@@ -32,7 +34,10 @@ public class PatientMenu {
         do {
             choice = sc.nextInt();
             switch (choice) {
-                case 1 -> System.out.println("1. Book a new doctor's appointment.");
+                case 1 -> {
+                    System.out.println("1. Book a new doctor's appointment.");
+                    DoctorsAppointment doctorsAppointment = new DoctorsAppointment(id);
+                }
                 case 2 -> System.out.println("2. View of recorded hours for a patient.");
                 case 3 -> System.out.println("3. Change the date/time of a recorded appointment.");
                 case 4 -> System.out.println("4. Canceling an appointment.");
