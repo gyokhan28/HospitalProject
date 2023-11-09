@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,14 +13,15 @@ public class DoctorMenu {
         this.lastName = lastName;
         this.doctorList = doctorList;
     }
-    public void showMenu() {
+
+    public void showMenu() throws IOException {
         System.out.println("Logged in as " + firstName + " " + lastName + "!");
         System.out.println("1.Show reserved appointments for medical examination");
         System.out.println("2.Sort reserved examinations");
         System.out.println("3.Group patients");
         selectMenuOption();
     }
-    public void selectMenuOption() {
+    public void selectMenuOption() throws IOException {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         System.out.print("Enter your choice: ");
@@ -27,7 +29,8 @@ public class DoctorMenu {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("1.ShowReserved");
+                    AppointmentDisplayer appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
+                    appointmentDisplayer.loadAppointmentsForSelectedDoctor();
                     break;
                 case 2:
                     System.out.println("2.SortReserved");

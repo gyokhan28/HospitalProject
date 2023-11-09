@@ -13,7 +13,7 @@ public class LoginDoctor {
         verifyUserIdentity();
     }
 
-    protected void verifyUserIdentity() {
+    protected void verifyUserIdentity() throws IOException {
         int id = verifier.getIdFromUser();
         String name = verifier.getNameFromUser();
         boolean isFound = false;
