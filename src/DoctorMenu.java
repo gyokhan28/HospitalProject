@@ -6,16 +6,20 @@ public class DoctorMenu {
     private int id;
     private String firstName, lastName;
     private List<Doctor> doctorList;
+    private AppointmentDisplayer appointmentDisplayer;
+    private AppointmentSorter appointmentSorter;
 
-    public DoctorMenu(int id, String firstName, String lastName, List<Doctor> doctorList) {
+    public DoctorMenu(int id, String firstName, String lastName, List<Doctor> doctorList) throws IOException {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.doctorList = doctorList;
+        appointmentDisplayer = new AppointmentDisplayer(id,doctorList);
+        appointmentSorter = new AppointmentSorter(id,doctorList);
+        System.out.println("Logged in as " + firstName + " " + lastName + "!");
     }
 
     public void showMenu() throws IOException {
-        System.out.println("Logged in as " + firstName + " " + lastName + "!");
         System.out.println("1.Show reserved appointments for medical examination");
         System.out.println("2.Sort reserved examinations");
         System.out.println("3.Group patients");
@@ -29,11 +33,11 @@ public class DoctorMenu {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    AppointmentDisplayer appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
                     appointmentDisplayer.loadAppointmentsForSelectedDoctor();
+                    showMenu();
                     break;
                 case 2:
-                    System.out.println("2.SortReserved");
+                    appointmentSorter.sortChoice();
                     break;
                 case 3:
                     System.out.println("3.Group");

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AppointmentsFileManager {
 
-    public List<Appointment> loadAppointments(String fileName) throws IOException {
+    public static List<Appointment> loadAppointments(String fileName) throws IOException {
         List<Appointment> appointmentList = new ArrayList<>();
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
         String line;
