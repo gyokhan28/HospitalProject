@@ -10,12 +10,11 @@ public class LoginPatient {
     Verifier verifier;
 
     public LoginPatient() throws IOException {
-        patientFileManager = new PatientFileManager();
-        patientList = patientFileManager.loadPatients("Patients.csv");
+        patientList = PatientFileManager.loadPatients("Patients.csv");
         verify();
     }
 
-    protected void verify() {
+    protected void verify() throws IOException {
         System.out.println("Enter patient ID:");
         Scanner sc = new Scanner(System.in);
         int id = -1;

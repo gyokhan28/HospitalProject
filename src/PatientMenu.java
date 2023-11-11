@@ -9,7 +9,7 @@ public class PatientMenu {
     private List<Patient> patientList;
     private List<Appointment>appointmentsList;
 
-    public PatientMenu(int id, String firstName, String lastName, List<Patient> patientList) {
+    public PatientMenu(int id, String firstName, String lastName, List<Patient> patientList) throws IOException {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,7 +18,7 @@ public class PatientMenu {
 
     }
 
-    public void showMenu() {
+    public void showMenu() throws IOException {
         System.out.println("Logged in as " + firstName + " " + lastName + "!");
         System.out.println("1. Book a new doctor's appointment.");
         System.out.println("2. View of recorded hours for a patient.");
@@ -27,14 +27,18 @@ public class PatientMenu {
         chooseAnOption();
     }
 
-    public void chooseAnOption() {
+    public void chooseAnOption() throws IOException {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         System.out.print("Enter your choice: ");
         do {
             choice = sc.nextInt();
             switch (choice) {
-                case 1 -> System.out.println("1. Book a new doctor's appointment.");
+                 case 1 -> {
+                    System.out.println("1. Book a new doctor's appointment.");
+                    AppointmentAdder appointmentAdder = new AppointmentAdder();
+                    appointmentAdder.addNewHour(id);
+                }
                 case 2 -> {
                     System.out.println("*** View of recorded hours for a "+firstName+" "+lastName+ " ***");
                     System.out.println();

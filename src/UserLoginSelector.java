@@ -12,6 +12,7 @@ public class UserLoginSelector {
             switch (choice) {
                 case "1":
                     LoginDoctor loginDoctor = new LoginDoctor();
+                    loginDoctor.verifyUserIdentity();
                     break;
                 case "2":
                     LoginPatient loginPatient = new LoginPatient();

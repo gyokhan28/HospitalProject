@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class AppointmentDisplayer {
     private final int personalDoctorId;
-    private List<Doctor> doctorList;
+    private final List<Doctor> doctorList;
     private final List<Appointment> appointmentList;
     private final List<Patient> patientList;
 
@@ -33,6 +33,7 @@ public class AppointmentDisplayer {
                     Scanner idScanner = new Scanner(System.in);
                     int id = idScanner.nextInt();
                     showAppointments(id);
+                    break;
                 default:
                     System.out.print("Wrong input! Try again:");
                     sc.next();
@@ -52,13 +53,11 @@ public class AppointmentDisplayer {
                         patientLastName = p.getLastName();
                     }
                 }
-                System.out.println("App. ID:" + a.getAppointmentId() + ". Patient:" + patientFirstName + " " +
-                        patientLastName + " Ex. type:" + a.getTypeOfExamination() + " Date:" +
-                        a.getDate() + " Time:" + a.getTime());
+                System.out.println("App. ID:" + a.getAppointmentId() + ", patient: " + patientFirstName + " " + patientLastName + ", Ex. type: " + a.getTypeOfExamination() + ", Date: " + a.getDate() + ", Time: " + a.getTime());
             }
         }
         if (!isFound) {
-            System.out.print("There is no doctor associated with this ID! Try again: ");
+            System.out.print("ID №" + id + " has no appointments! Try with another doctor ID: ");
             Scanner sc = new Scanner(System.in);
             int newId = sc.nextInt();
             showAppointments(newId);

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PatientFileManager {
 
-    public List<Patient> loadPatients(String fileName) throws IOException {
+    public static List<Patient> loadPatients(String fileName) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
         List<Patient> patientList = new ArrayList<>();
         String line;
