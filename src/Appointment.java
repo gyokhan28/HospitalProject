@@ -62,4 +62,16 @@ public class Appointment {
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
     }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointmentId=" + appointmentId +
+                ", patientId=" + patientId +
+                ", typeOfExamination='" + typeOfExamination + '\'' +
+                ", date='" + date + '\'' +
+                ", time=" + time +
+                ", doctorId=" + doctorId +
+                '}';
+    }
 }

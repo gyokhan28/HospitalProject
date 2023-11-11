@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class LoginPatient {
     PatientFileManager patientFileManager;
+
     protected List<Patient> patientList;
     Verifier verifier;
 
