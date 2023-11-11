@@ -14,7 +14,7 @@ public class LoginPatient {
         verify();
     }
 
-    protected void verify() {
+    protected void verify() throws IOException {
         System.out.println("Enter patient ID:");
         Scanner sc = new Scanner(System.in);
         int id = -1;
