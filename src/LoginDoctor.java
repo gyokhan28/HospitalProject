@@ -7,10 +7,8 @@ public class LoginDoctor {
     Verifier verifier;
 
     public LoginDoctor() throws IOException {
-        doctorFileManager = new DoctorFileManager();
-        doctorList = doctorFileManager.loadDoctors("Doctors.csv");
+        doctorList = DoctorFileManager.loadDoctors("Doctors.csv");
         verifier = new Verifier();
-        verifyUserIdentity();
     }
 
     protected void verifyUserIdentity() throws IOException {
