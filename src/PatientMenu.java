@@ -51,7 +51,12 @@ public class PatientMenu {
 
                 }
                 case 3 -> System.out.println("3. Change the date/time of a recorded appointment.");
-                case 4 -> System.out.println("4. Canceling an appointment.");
+                case 4 -> {
+                    System.out.println("*** Canceling an appointment ***");
+                    CancelingByAppointmentId cancelingByAppointmentId = new CancelingByAppointmentId();
+                    cancelingByAppointmentId.cancelAppointment(id);
+                    showMenu();
+                }
                 default -> System.out.print("Wrong input! Try again: ");
             }
         } while (choice != 1 && choice != 2 && choice != 3);
