@@ -45,7 +45,6 @@ public class AppointmentPatientAssociation {
             }
         }
     }
-
     public List<AppointmentPatientAssociation> getSortedList(int doctorId) {
         List<AppointmentPatientAssociation> resultList = new ArrayList<>();
         for (AppointmentPatientAssociation a : appointmentPatientAssociations) {

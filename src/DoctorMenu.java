@@ -15,7 +15,7 @@ public class DoctorMenu {
         this.lastName = lastName;
         this.doctorList = doctorList;
         appointmentDisplayer = new AppointmentDisplayer(id,doctorList);
-        appointmentSorter = new AppointmentSorter(id,doctorList);
+        appointmentSorter = new AppointmentSorter(id,doctorList, firstName, lastName);
         System.out.println("\nLogged in as " + firstName + " " + lastName + "!");
     }
 
