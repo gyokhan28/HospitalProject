@@ -13,19 +13,15 @@ public class AppointmentAdder {
 
     public AppointmentAdder() throws IOException {
         DoctorFileManager doctorFileManager = new DoctorFileManager();
-        //AppointmentsFileManager appointmentsFileManager = new AppointmentsFileManager();
         PatientFileManager patientFileManager = new PatientFileManager();
         doctorsList = doctorFileManager.loadDoctors("Doctors.csv");
-        // appointmentList = appointmentsFileManager.loadAppointments("Appointments.csv");
         patientList = patientFileManager.loadPatients("Patients.csv");
-        // this.doctorList = doctorList;
-        // this.personalPatientId = id;
     }
 
 
     public void addNewHour(int iDPatient) throws IOException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("До тук добре ..." + iDPatient);
+
         int lastID = returnLastID();
         String examinationType = returnTypeOfExamination();
         System.out.print("Enter date of examination: ");
@@ -34,7 +30,6 @@ public class AppointmentAdder {
         int time = sc.nextInt();
         int doctorID = returnDoctorID();
         System.out.println("Last ID" + lastID + " Examination type " + examinationType + " Date " + date + " time " + time + " doctor ID" + doctorID);
-        // Appointment appointment = new Appointment(lastID+1,iDPatient,examinationType,date,time,doctorID);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("Appointments copy.csv", true))) {
 
@@ -42,6 +37,8 @@ public class AppointmentAdder {
             bw.newLine();
 
             System.out.println("File is updated!");
+            System.out.println();
+            bw.close();
         } catch (IOException e) {
             System.err.println("Error writing in file: " + e.getMessage());
         }

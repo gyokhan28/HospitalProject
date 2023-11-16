@@ -6,6 +6,7 @@ public class AppointmentSorter {
     private final List<Doctor> doctorList;
     private final List<Appointment> appointmentList;
     private final List<Patient> patientList;
+    private Scanner sc;
 
     public AppointmentSorter(int id, List<Doctor> doctorList) throws IOException {
         appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
@@ -15,43 +16,58 @@ public class AppointmentSorter {
     }
 
     public void sortChoice() throws IOException {
-        System.out.print("Who's patients would you like to sort in alphabetical order? (1-Yours/2-Someone else's): ");
+        System.out.println("==== Sorting Menu ==== ");
+        System.out.print("1.Ascending/2.Descending order:");
         Scanner sc = new Scanner(System.in);
         String choice;
         do {
             choice = sc.next();
             switch (choice) {
                 case "1":
-                    System.out.println("Showing your sorted appointments: ");
-                    printSortedAppointments(personalDoctorId);
+                    System.out.println("\n1.Sort by patient name");
+                    System.out.println("2.Sort by appointment hour");
+                    System.out.println("3.Sort by patient ID");
+                    System.out.print("\nEnter your choice:");
+                    handleMenuChoice(sc.next());
                     break;
                 case "2":
-                    System.out.print("Enter doctor id: ");
-                    Scanner idScanner = new Scanner(System.in);
-                    int id = idScanner.nextInt();
-                    printSortedAppointments(id);
-                    break;
+                    //////////////////
                 default:
                     System.out.print("Wrong input! Try again: ");
-                    sc.next();
+                    sc.nextLine();
             }
         } while (!choice.equals("1") && !choice.equals("2"));
     }
 
-    public List<Appointment> getPatientsById(int id, List<Appointment> appointmentList) {
-        List<Appointment> docAppointmentList = new ArrayList<>();
-        for (Appointment a : appointmentList) {
-            if (a.getDoctorId() == id) {
-                docAppointmentList.add(a);
+    public void handleMenuChoice(String choice) throws IOException {
+        sc = new Scanner(System.in);
+        do {
+            switch (choice) {
+                case "1":
+                    System.out.print("Enter ID:");
+                    String id = sc.nextLine();
+                    if (id.isEmpty()) {
+                        printSortedAppointments(personalDoctorId);
+                    } else {
+                        System.out.println("Sorting by patient name:");
+                        printSortedAppointments(Integer.parseInt(id));
+                    }
+                    break;
+                case "2":
+
+                default:
+                    System.out.print("Wrong input! Try again: ");
+                    sc.nextLine();
             }
-        }
-        return docAppointmentList;
+        } while (!choice.equals("1") && !choice.equals("2"));
     }
 
-
     public void printSortedAppointments(int id) throws IOException {
-        List<Appointment> docAppointmentList = getPatientsById(id, appointmentList);
-
-
+        AppointmentPatientAssociation apa = new AppointmentPatientAssociation();
+        apa.combineAllInfo();
+        List<AppointmentPatientAssociation> sorted = apa.getSortedList(id);
+        for (AppointmentPatientAssociation appointmentPatientAssociation : sorted) {
+            System.out.println(appointmentPatientAssociation);
+        }
     }
 }

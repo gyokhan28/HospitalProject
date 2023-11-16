@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,36 +10,32 @@ public class AppointmentDisplayer {
     private final List<Patient> patientList;
 
     public AppointmentDisplayer(int id, List<Doctor> doctorList) throws IOException {
-        AppointmentsFileManager appointmentsFileManager = new AppointmentsFileManager();
-        PatientFileManager patientFileManager = new PatientFileManager();
-        appointmentList = appointmentsFileManager.loadAppointments("Appointments.csv");
-        patientList = patientFileManager.loadPatients("Patients.csv");
+        appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+        patientList = PatientFileManager.loadPatients("Patients.csv");
         this.doctorList = doctorList;
         this.personalDoctorId = id;
     }
 
     public void loadAppointmentsForSelectedDoctor() {
-        System.out.print("Who's appointments would you like to see? (1-Yours/2-Someone else's):");
+        System.out.print("Who's appointments would you like to see?:");
         Scanner sc = new Scanner(System.in);
         String choice;
-        do {
-            choice = sc.next();
-            switch (choice) {
-                case "1":
-                    System.out.println("Showing your appointments:");
-                    showAppointments(personalDoctorId);
+        choice = sc.nextLine();
+        if (choice.isEmpty()) {
+            System.out.println("Showing your appointments:");
+            showAppointments(personalDoctorId);
+        } else {
+            while (true) {
+                try {
+                    int newId = Integer.parseInt(choice);
+                    showAppointments(newId);
                     break;
-                case "2":
-                    System.out.println("Enter doctor id:");
-                    Scanner idScanner = new Scanner(System.in);
-                    int id = idScanner.nextInt();
-                    showAppointments(id);
-                    break;
-                default:
-                    System.out.print("Wrong input! Try again:");
-                    sc.next();
+                } catch (NumberFormatException e) {
+                    System.out.print("You did not enter a correct id! Try again (1-"+doctorList.size()+"):");
+                    choice = sc.next();
+                }
             }
-        } while (!choice.equals("1") && !choice.equals("2"));
+        }
     }
 
     public void showAppointments(int id) {

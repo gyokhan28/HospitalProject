@@ -16,13 +16,13 @@ public class DoctorMenu {
         this.doctorList = doctorList;
         appointmentDisplayer = new AppointmentDisplayer(id,doctorList);
         appointmentSorter = new AppointmentSorter(id,doctorList);
-        System.out.println("Logged in as " + firstName + " " + lastName + "!");
+        System.out.println("\nLogged in as " + firstName + " " + lastName + "!");
     }
 
     public void showMenu() throws IOException {
-        System.out.println("1.Show reserved appointments for medical examination");
+        System.out.println("\n1.Show reserved appointments for medical examination");
         System.out.println("2.Sort reserved examinations");
-        System.out.println("3.Group patients");
+        System.out.println("3.Group patients\n");
         selectMenuOption();
     }
     public void selectMenuOption() throws IOException {
