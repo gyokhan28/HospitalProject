@@ -14,8 +14,8 @@ public class DoctorMenu {
         this.firstName = firstName;
         this.lastName = lastName;
         this.doctorList = doctorList;
-        appointmentDisplayer = new AppointmentDisplayer(id,doctorList);
-        appointmentSorter = new AppointmentSorter(id,doctorList, firstName, lastName);
+        appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
+        appointmentSorter = new AppointmentSorter(id, doctorList, firstName, lastName);
         System.out.println("\nLogged in as " + firstName + " " + lastName + "!");
     }
 
@@ -25,6 +25,7 @@ public class DoctorMenu {
         System.out.println("3.Group patients\n");
         selectMenuOption();
     }
+
     public void selectMenuOption() throws IOException {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
