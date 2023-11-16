@@ -17,7 +17,7 @@ public class AppointmentDisplayer {
     }
 
     public void loadAppointmentsForSelectedDoctor() {
-        System.out.print("Who's appointments would you like to see?:");
+        System.out.print("Who's appointments would you like to see? (press Enter to see yours):");
         Scanner sc = new Scanner(System.in);
         String choice;
         choice = sc.nextLine();

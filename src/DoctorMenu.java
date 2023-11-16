@@ -7,8 +7,8 @@ public class DoctorMenu {
     private final AppointmentSorter appointmentSorter;
 
     public DoctorMenu(int id, String firstName, String lastName, List<Doctor> doctorList) throws IOException {
-        appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
-        appointmentSorter = new AppointmentSorter(id, doctorList, firstName, lastName);
+        appointmentDisplayer = new AppointmentDisplayer(id,doctorList);
+        appointmentSorter = new AppointmentSorter(id,doctorList);
         System.out.println("\nLogged in as " + firstName + " " + lastName + "!");
     }
 
@@ -18,7 +18,6 @@ public class DoctorMenu {
         System.out.println("3.Group patients\n");
         selectMenuOption();
     }
-
     public void selectMenuOption() throws IOException {
         Scanner sc = new Scanner(System.in);
         int choice;
