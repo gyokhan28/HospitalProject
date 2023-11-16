@@ -5,23 +5,22 @@ public class AppointmentSorter {
     private final int personalDoctorId;
     private final List<Doctor> doctorList;
     private final List<Appointment> appointmentList;
-    private final List<Patient> patientList;
     private Scanner sc;
     private String sortingType;
     private final String docFirstName;
     private final String docLastName;
 
-    public String getOrderType() {
+    public String getSortingType() {
         return sortingType;
     }
 
-    public void setOrderType(String orderType) {
+    public void setSortingType(String orderType) {
         this.sortingType = orderType;
     }
 
     public AppointmentSorter(int id, List<Doctor> doctorList, String firstName, String lastName) throws IOException {
         appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
-        patientList = PatientFileManager.loadPatients("Patients.csv");
+        List<Patient> patientList = PatientFileManager.loadPatients("Patients.csv");
         this.doctorList = doctorList;
         this.personalDoctorId = id;
         docFirstName = firstName;
@@ -40,7 +39,7 @@ public class AppointmentSorter {
                     DoctorMenu doctorMenu = new DoctorMenu(personalDoctorId, docFirstName, docLastName, doctorList);
                     doctorMenu.showMenu();
                 case "1":
-                    setOrderType("Ascending");
+                    setSortingType("Ascending");
                     System.out.println("\n1.Sort by patient name");
                     System.out.println("2.Sort by appointment hour");
                     System.out.println("3.Sort by patient ID");
@@ -48,7 +47,7 @@ public class AppointmentSorter {
                     handleMenuChoice(sc.next());
                     break;
                 case "2":
-                    setOrderType("Descending");
+                    setSortingType("Descending");
                     System.out.println("\n1.Sort by patient name");
                     System.out.println("2.Sort by appointment hour");
                     System.out.println("3.Sort by patient ID");
@@ -71,7 +70,6 @@ public class AppointmentSorter {
             return id;
         }
     }
-
     public void handleMenuChoice(String choice) throws IOException {
         sc = new Scanner(System.in);
         do {
@@ -79,30 +77,30 @@ public class AppointmentSorter {
                 case "1":
                     String id = takeId();
                     if (!id.isEmpty()) {
-                        printSortedByNameAppointments(Integer.parseInt(id), sortingType);
+                        printSortedByNameAppointments(Integer.parseInt(id), getSortingType());
                     } else {
                         System.out.println("Showing your appointments sorted by patient name:");
-                        printSortedByNameAppointments(personalDoctorId, sortingType);
+                        printSortedByNameAppointments(personalDoctorId, getSortingType());
                     }
                     sortChoice();
                     break;
                 case "2":
                     id = takeId();
                     if (!id.isEmpty()) {
-                        printSortedByHourAppointments(Integer.parseInt(id), sortingType);
+                        printSortedByHourAppointments(Integer.parseInt(id), getSortingType());
                     } else {
                         System.out.println("Showing your appointment sorted by hour:");
-                        printSortedByHourAppointments(personalDoctorId, sortingType);
+                        printSortedByHourAppointments(personalDoctorId, getSortingType());
                     }
                     sortChoice();
                     break;
                 case "3":
                     id = takeId();
                     if (!id.isEmpty()) {
-                        printSortedByPatientID(Integer.parseInt(id), sortingType);
+                        printSortedByPatientID(Integer.parseInt(id), getSortingType());
                     } else {
                         System.out.println("Showing your appointment sorted by patient ID:");
-                        printSortedByPatientID(personalDoctorId, sortingType);
+                        printSortedByPatientID(personalDoctorId, getSortingType());
                     }
                     sortChoice();
                     break;
@@ -110,7 +108,7 @@ public class AppointmentSorter {
                     System.out.print("Wrong input! Try again: ");
                     choice = sc.next();
             }
-        } while (!choice.equals("1") && !choice.equals("2"));
+        } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3"));
     }
 
     public void printSortedByNameAppointments(int docId, String orderType) throws IOException {

@@ -3,17 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DoctorMenu {
-    private int id;
-    private String firstName, lastName;
-    private List<Doctor> doctorList;
-    private AppointmentDisplayer appointmentDisplayer;
-    private AppointmentSorter appointmentSorter;
+    private final AppointmentDisplayer appointmentDisplayer;
+    private final AppointmentSorter appointmentSorter;
 
     public DoctorMenu(int id, String firstName, String lastName, List<Doctor> doctorList) throws IOException {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.doctorList = doctorList;
         appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
         appointmentSorter = new AppointmentSorter(id, doctorList, firstName, lastName);
         System.out.println("\nLogged in as " + firstName + " " + lastName + "!");
@@ -28,7 +21,7 @@ public class DoctorMenu {
 
     public void selectMenuOption() throws IOException {
         Scanner sc = new Scanner(System.in);
-        int choice = 0;
+        int choice;
         System.out.print("Enter your choice: ");
         do {
             choice = sc.nextInt();
