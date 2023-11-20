@@ -50,7 +50,7 @@ public class ChangeDateTime {
         return isFound;
     }
 
-    public boolean checkIfTheIDIsCorrect(int appointmentID, int patientID) {
+    public boolean checkIfTheIDIsCorrect(int appointmentID, int patientID) throws IOException {
         boolean isFound = false;
         List<Appointment> appointmentsByPatient = previewOfRecordedHours.returnAppointmentListByPatientID(patientID);
         if (!appointmentsByPatient.isEmpty()) {
