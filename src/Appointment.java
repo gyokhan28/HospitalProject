@@ -73,4 +73,6 @@ public class Appointment {
                 ", Time:" + time +
                 ", Doctor ID:" + doctorId;
     }
+
+
 }

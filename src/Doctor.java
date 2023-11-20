@@ -41,4 +41,14 @@ public class Doctor {
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
     }
+
+    @Override
+    public String toString() {
+        return "Doctor" +
+                " ID:" + id +
+                " First name: " + firstName +
+                ", Last name: " + lastName +
+                ", Speciality: " + speciality +
+                "\n";
+    }
 }

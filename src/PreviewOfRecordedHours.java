@@ -22,7 +22,7 @@ public class PreviewOfRecordedHours {
         }
     }
 
-    public List<Appointment> returnAppointmentListByPatientID(int id) {
+    public List<Appointment> returnAppointmentListByPatientID(int id) throws IOException {
         List<Appointment>appointmentsByPatient = new ArrayList<>();
         for (Appointment appointment:appointmentsList) {
             if(id== appointment.getPatientId()){

@@ -8,14 +8,9 @@ import java.util.Scanner;
 public class AppointmentAdder {
     // private final int personalPatientId;
     private final List<Doctor> doctorsList;
-    private List<Appointment> appointmentList;
-    private final List<Patient> patientList;
 
     public AppointmentAdder() throws IOException {
-        DoctorFileManager doctorFileManager = new DoctorFileManager();
-        PatientFileManager patientFileManager = new PatientFileManager();
-        doctorsList = doctorFileManager.loadDoctors("Doctors.csv");
-        patientList = patientFileManager.loadPatients("Patients.csv");
+        doctorsList = DoctorFileManager.loadDoctors("Doctors.csv");
     }
 
 
@@ -38,7 +33,6 @@ public class AppointmentAdder {
 
             System.out.println("File is updated!");
             System.out.println();
-            bw.close();
         } catch (IOException e) {
             System.err.println("Error writing in file: " + e.getMessage());
         }
@@ -97,8 +91,7 @@ public class AppointmentAdder {
     }
 
     public int returnLastID() throws IOException {
-        AppointmentsFileManager appointmentsFileManager = new AppointmentsFileManager();
-        appointmentList = appointmentsFileManager.loadAppointments("Appointments copy.csv");
+        List<Appointment> appointmentList = AppointmentsFileManager.loadAppointments("Appointments copy.csv");
         return appointmentList.get(appointmentList.size() - 1).getAppointmentId();
     }
 }
