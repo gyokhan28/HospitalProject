@@ -9,6 +9,13 @@ public class Patient implements Comparable<Patient> {
         this.lastName = lastName;
         this.age = age;
     }
+    public Patient(){
+        setId(0);
+        setFirstName("Unnamed");
+        setLastName("Unnamed");
+        setAge(0);
+    }
+
     public int getId() {
         return id;
     }

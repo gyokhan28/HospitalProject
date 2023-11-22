@@ -4,7 +4,6 @@ import java.util.List;
 
 public class PreviewOfRecordedHours {
     List<Appointment>appointmentsList;
-    AppointmentsFileManager appointmentsFileManager;
 
     public PreviewOfRecordedHours() throws IOException {
         this.appointmentsList =AppointmentsFileManager.loadAppointments("Appointments.csv");
@@ -22,7 +21,7 @@ public class PreviewOfRecordedHours {
         }
     }
 
-    public List<Appointment> returnAppointmentListByPatientID(int id) throws IOException {
+    public List<Appointment> returnAppointmentListByPatientID(int id){
         List<Appointment>appointmentsByPatient = new ArrayList<>();
         for (Appointment appointment:appointmentsList) {
             if(id== appointment.getPatientId()){

@@ -17,10 +17,13 @@ public class UserLoginSelector {
                 case "2":
                     LoginPatient loginPatient = new LoginPatient();
                     break;
+                case "ADMIN":
+                    LoginAdmin loginAdmin = new LoginAdmin();
+                    break;
                 default:
                     System.out.print("Wrong input! Try again: ");
                     break;
             }
-        } while (!choice.equals("1") && !choice.equals("2"));
+        } while (!choice.equals("1") && !choice.equals("2")&&!choice.equals("ADMIN"));
     }
 }
