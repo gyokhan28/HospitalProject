@@ -21,7 +21,7 @@ public class AppointmentSorter {
 
     public AppointmentSorter(int id, List<Doctor> doctorList, String firstName, String lastName) throws IOException {
         appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
-        patientList = PatientFileManager.loadPatients("Patients.csv");
+        patientList = PatientFileManager.loadPatients();
         this.doctorList = doctorList;
         this.personalDoctorId = id;
         docFirstName = firstName;

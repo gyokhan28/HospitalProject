@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AppointmentAdder {
-    // private final int personalPatientId;
     private final List<Doctor> doctorsList;
 
     public AppointmentAdder() throws IOException {

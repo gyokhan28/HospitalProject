@@ -10,7 +10,7 @@ public class LoginPatient {
     Verifier verifier;
 
     public LoginPatient() throws IOException {
-        patientList = PatientFileManager.loadPatients("Patients.csv");
+        patientList = PatientFileManager.loadPatients();
         verify();
     }
 

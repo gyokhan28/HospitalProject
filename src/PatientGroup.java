@@ -9,7 +9,7 @@ public class PatientGroup {
     public PatientGroup() throws IOException {
         this.doctorList = DoctorFileManager.loadDoctors("Doctors.csv");
         this.appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
-        this.patientList = PatientFileManager.loadPatients("Patients.csv");
+        this.patientList = PatientFileManager.loadPatients();
     }
     public List<Doctor> getDoctorList() {
         return doctorList;
