@@ -8,7 +8,7 @@ public class CancelingByAppointmentId {
     AppointmentsFileManager appointmentsFileManager = new AppointmentsFileManager();
 
     public CancelingByAppointmentId() throws IOException {
-        this.appointmentsList = appointmentsFileManager.loadAppointments("Appointments.csv");
+        this.appointmentsList = AppointmentsFileManager.loadAppointments("Appointments.csv");
     }
 
     public void cancelAppointment(int patientID) throws IOException {
@@ -39,6 +39,7 @@ public class CancelingByAppointmentId {
         for (Appointment appointment : appointmentsList) {
             if (patientID == appointment.getPatientId()) {
                 isFound = true;
+                break;
             }
         }
         return isFound;
@@ -51,6 +52,7 @@ public class CancelingByAppointmentId {
             for (Appointment appointment : appointmentsByPatient) {
                 if (appointmentID == appointment.getAppointmentId()) {
                     isFound = true;
+                    break;
                 }
             }
         }
