@@ -7,12 +7,12 @@ public class Appointment {
     private int doctorId;
 
     public Appointment(int appointmentId, int patientId, String typeOfExamination, String date, int time, int doctorId) {
-        this.appointmentId = appointmentId;
-        this.patientId = patientId;
-        this.typeOfExamination = typeOfExamination;
-        this.date = date;
-        this.time = time;
-        this.doctorId = doctorId;
+        setAppointmentId(appointmentId);
+        setPatientId(patientId);
+        setTypeOfExamination(typeOfExamination);
+        setDate(date);
+        setTime(time);
+        setDoctorId(doctorId);
     }
 
     public int getAppointmentId() {
