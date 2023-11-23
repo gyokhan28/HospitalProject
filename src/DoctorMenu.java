@@ -36,7 +36,7 @@ public class DoctorMenu {
                     appointmentSorter.sortChoice();
                     break;
                 case "3":
-                    patientGroup.groupPatientsByDoctorName();
+                    patientGroup.groupPatientsBySpeciality();
                     break;
                 default:
                     System.out.print("Wrong input! Try again: ");
