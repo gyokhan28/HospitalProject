@@ -50,11 +50,12 @@ public class Patient implements Comparable<Patient> {
 
     @Override
     public String toString() {
-        return "Patient " +
+        return "Patient {" +
                 "ID: " + id +
                 ", Name: " + firstName +
                 " " + lastName +
-                ", Age: " + age;
+                ", Age: " + age +
+                "}";
     }
 
     @Override

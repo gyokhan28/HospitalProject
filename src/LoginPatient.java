@@ -7,7 +7,6 @@ public class LoginPatient {
     PatientFileManager patientFileManager;
 
     protected List<Patient> patientList;
-    Verifier verifier;
 
     public LoginPatient() throws IOException {
         patientList = PatientFileManager.loadPatients();
