@@ -1,30 +1,42 @@
 public class Appointment {
-    private final int appointmentId;
-    private final int patientId;
-    private final String typeOfExamination;
+    private int appointmentId;
+    private int patientId;
+    private String typeOfExamination;
     private String date;
-    private final int time;
-    private final int doctorId;
+    private int time;
+    private int doctorId;
 
     public Appointment(int appointmentId, int patientId, String typeOfExamination, String date, int time, int doctorId) {
-        this.appointmentId = appointmentId;
-        this.patientId = patientId;
-        this.typeOfExamination = typeOfExamination;
-        this.date = date;
-        this.time = time;
-        this.doctorId = doctorId;
+        setAppointmentId(appointmentId);
+        setPatientId(patientId);
+        setTypeOfExamination(typeOfExamination);
+        setDate(date);
+        setTime(time);
+        setDoctorId(doctorId);
     }
 
     public int getAppointmentId() {
         return appointmentId;
     }
 
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
     public int getPatientId() {
         return patientId;
     }
 
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
     public String getTypeOfExamination() {
         return typeOfExamination;
+    }
+
+    public void setTypeOfExamination(String typeOfExamination) {
+        this.typeOfExamination = typeOfExamination;
     }
 
     public String getDate() {
@@ -39,8 +51,16 @@ public class Appointment {
         return time;
     }
 
+    public void setTime(int time) {
+        this.time = time;
+    }
+
     public int getDoctorId() {
         return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 
     @Override

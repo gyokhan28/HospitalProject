@@ -26,8 +26,8 @@ public class AppointmentSorter {
     }
 
     public void sortChoice() throws IOException {
-        System.out.println("\n==== Sorting Menu ==== ");
-        System.out.print("1.Ascending/2.Descending order (or 0 to go to Main menu):");
+        System.out.println("\nChoose sorting order:");
+        System.out.print("1.Ascending / 2.Descending order (or 0 to go to the Main menu):");
         Scanner sc = new Scanner(System.in);
         String choice;
         do {
@@ -54,10 +54,17 @@ public class AppointmentSorter {
         sc = new Scanner(System.in);
         System.out.print("Enter ID:");
         String id = sc.nextLine();
+        boolean flag = false;
         if (id.isEmpty()) {
             return "";
         } else {
-            return id;
+            try {
+                int testId = Integer.parseInt(id);
+                return id;
+            } catch (NumberFormatException e){
+                System.out.println("Invalid ID!");
+                return takeId();
+            }
         }
     }
 
@@ -108,6 +115,23 @@ public class AppointmentSorter {
         } while (!choice.equals("1") && !choice.equals("2"));
     }
 
+    public static String formatHour(int intHour) {
+        String hour = String.valueOf(intHour);
+        String minutes = hour.substring(hour.length() - 2);
+        String hours = hour.substring(0, hour.length() - 2);
+        return hours + ":" + minutes;
+    }
+
+    public List<Appointment> getDoctorAppointments(int docId) {
+        List<Appointment> currentDocAppointments = new ArrayList<>();
+        for (Appointment a : appointmentList) {
+            if (a.getDoctorId() == docId) {
+                currentDocAppointments.add(a);
+            }
+        }
+        return currentDocAppointments;
+    }
+
     public void printSortedByNameAppointments(int docId, String orderType) {
         Collections.sort(patientList);
         if (orderType.equals("Descending")) {
@@ -126,23 +150,6 @@ public class AppointmentSorter {
         if (!isFound) {
             System.out.println("Doctor with ID " + docId + " has no appointments!");
         }
-    }
-
-    public static String formatHour(int intHour) {
-        String hour = String.valueOf(intHour);
-        String minutes = hour.substring(hour.length() - 2);
-        String hours = hour.substring(0, hour.length() - 2);
-        return hours + ":" + minutes;
-    }
-
-    public List<Appointment> getDoctorAppointments(int docId) {
-        List<Appointment> currentDocAppointments = new ArrayList<>();
-        for (Appointment a : appointmentList) {
-            if (a.getDoctorId() == docId) {
-                currentDocAppointments.add(a);
-            }
-        }
-        return currentDocAppointments;
     }
 
     public void printSortedByHourAppointments(int docId, String sortingType) {
