@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AppointmentSorter {
     private final int personalDoctorId;
@@ -10,10 +11,6 @@ public class AppointmentSorter {
     private String sortingType;
     private final String docFirstName;
     private final String docLastName;
-
-    public String getOrderType() {
-        return sortingType;
-    }
 
     public void setOrderType(String orderType) {
         this.sortingType = orderType;
@@ -41,19 +38,11 @@ public class AppointmentSorter {
                     doctorMenu.showMenu();
                 case "1":
                     setOrderType("Ascending");
-                    System.out.println("\n1.Sort by patient name");
-                    System.out.println("2.Sort by appointment hour");
-                    System.out.println("3.Sort by patient ID");
-                    System.out.print("\nEnter your choice:");
-                    handleMenuChoice(sc.next());
+                    handleMenuChoice(choice);
                     break;
                 case "2":
                     setOrderType("Descending");
-                    System.out.println("\n1.Sort by patient name");
-                    System.out.println("2.Sort by appointment hour");
-                    System.out.println("3.Sort by patient ID");
-                    System.out.print("\nEnter your choice:");
-                    handleMenuChoice(sc.next());
+                    handleMenuChoice(choice);
                     break;
                 default:
                     System.out.print("Wrong input! Try again: ");
@@ -73,10 +62,15 @@ public class AppointmentSorter {
     }
 
     public void handleMenuChoice(String choice) throws IOException {
+        System.out.println("\n1.Sort by patient name");
+        System.out.println("2.Sort by appointment hour");
+        System.out.println("3.Sort by patient ID");
+        System.out.print("\nEnter your choice:");
         sc = new Scanner(System.in);
-        String id = "";
+        String sortChoice = sc.next();
+        String id;
         do {
-            switch (choice) {
+            switch (sortChoice) {
                 case "1":
                     id = takeId();
                     if (!id.isEmpty()) {
@@ -116,29 +110,31 @@ public class AppointmentSorter {
 
     public void printSortedByNameAppointments(int docId, String orderType) {
         Collections.sort(patientList);
-        if(orderType.equals("Descending")) {
+        if (orderType.equals("Descending")) {
             Collections.reverse(patientList);
         }
         boolean isFound = false;
-        for(int i=0;i<patientList.size();i++){
-            for(int j=0;j<appointmentList.size();j++){
-                if(patientList.get(i).getId()==appointmentList.get(j).getPatientId() && appointmentList.get(j).getDoctorId()==docId){
+        for (Patient patient : patientList) {
+            for (Appointment appointment : appointmentList) {
+                if (patient.getId() == appointment.getPatientId() && appointment.getDoctorId() == docId) {
                     isFound = true;
-                    System.out.print("Patient name:"+patientList.get(i).getFirstName()+" "+patientList.get(i).getLastName());
-                    System.out.println(" | Appointment on:"+appointmentList.get(j).getDate()+", at:"+formatHour(appointmentList.get(j).getTime())+" (Examination:"+ appointmentList.get(j).getTypeOfExamination()+")");
+                    System.out.print("Patient name:" + patient.getFirstName() + " " + patient.getLastName());
+                    System.out.println(" | Appointment on:" + appointment.getDate() + ", at:" + formatHour(appointment.getTime()) + " (Examination:" + appointment.getTypeOfExamination() + ")");
                 }
             }
         }
-        if(!isFound){
-            System.out.println("Doctor with ID "+docId+" has no appointments!");
+        if (!isFound) {
+            System.out.println("Doctor with ID " + docId + " has no appointments!");
         }
     }
-    public static String formatHour(int intHour){
+
+    public static String formatHour(int intHour) {
         String hour = String.valueOf(intHour);
-        String minutes = hour.substring(hour.length()-2);
-        String hours = hour.substring(0,hour.length()-2);
-        return hours+":"+minutes;
+        String minutes = hour.substring(hour.length() - 2);
+        String hours = hour.substring(0, hour.length() - 2);
+        return hours + ":" + minutes;
     }
+
     public List<Appointment> getDoctorAppointments(int docId) {
         List<Appointment> currentDocAppointments = new ArrayList<>();
         for (Appointment a : appointmentList) {
@@ -174,9 +170,7 @@ public class AppointmentSorter {
             Comparator<Appointment> patientIdComparator = Comparator.comparing(Appointment::getPatientId);
             currentDocAppointments.sort(patientIdComparator);
             if (sortingType.equals("Ascending")) {
-                for (Appointment currentDocAppointment : currentDocAppointments) {
-                    System.out.println(currentDocAppointment);
-                }
+                currentDocAppointments.forEach(System.out::println);
             } else {
                 for (int i = currentDocAppointments.size() - 1; i >= 0; i--) {
                     System.out.println(currentDocAppointments.get(i));

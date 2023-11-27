@@ -5,19 +5,15 @@ import java.util.Scanner;
 public class DoctorMenu {
     private final AppointmentDisplayer appointmentDisplayer;
     private final AppointmentSorter appointmentSorter;
-    private final PatientGroup patientGroup;
 
     public DoctorMenu(int id, String firstName, String lastName, List<Doctor> doctorList) throws IOException {
         appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
         appointmentSorter = new AppointmentSorter(id, doctorList, firstName, lastName);
-        patientGroup = new PatientGroup();
         System.out.println("\nLogged in as " + firstName + " " + lastName + "!");
     }
 
     public void showMenu() throws IOException {
-        System.out.println("\n1.Show reserved appointments for medical examination");
-        System.out.println("2.Sort reserved examinations");
-        System.out.println("3.Group patients\n");
+        System.out.println("\n1.Show reserved appointments for medical examination\n2.Sort reserved examinations\n3.Group patients\n");
         selectMenuOption();
     }
 
@@ -36,7 +32,8 @@ public class DoctorMenu {
                     appointmentSorter.sortChoice();
                     break;
                 case "3":
-                    patientGroup.groupPatientsByDoctorName();
+                    PatientGroup.showGroupingMenu();
+                    showMenu();
                     break;
                 default:
                     System.out.print("Wrong input! Try again: ");

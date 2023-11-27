@@ -31,7 +31,7 @@ public class AppointmentDisplayer {
                     showAppointments(newId);
                     break;
                 } catch (NumberFormatException e) {
-                    System.out.print("You did not enter a correct id! Try again (1-"+doctorList.size()+"):");
+                    System.out.print("You did not enter a correct id! Try again (1-" + doctorList.size() + "):");
                     choice = sc.next();
                 }
             }
