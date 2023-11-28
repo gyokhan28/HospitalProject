@@ -24,51 +24,40 @@ public class PatientGroup {
     }
 
     protected static void loadLists() throws IOException {
-        doctorList = DoctorFileManager.loadDoctors("Doctors.csv");
-        appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+        doctorList = DoctorFileManager.loadDoctors();
+        appointmentList = AppointmentsFileManager.loadAppointments();
         patientList = PatientFileManager.loadPatients();
     }
 
     protected static void groupPatientsByDoctorName() {
-        System.out.println("Showing grouped patients list by doctor name:");
-        for (Doctor doctor : doctorList) {
-            boolean doctorPrinted = false;
-            for (int j = 0; j < appointmentList.size(); j++) {
-                if (doctor.getId() == appointmentList.get(j).getDoctorId()) {
-                    if (!doctorPrinted) {
-                        System.out.print("\nDr." + doctor.getFirstName() + " " + doctor.getLastName() + ": ");
-                    }
-                    doctorPrinted = true;
-                    for (Patient patient : patientList) {
-                        if (patient.getId() == appointmentList.get(j).getPatientId()) {
-                            System.out.print(patientList.get(j) + " ");
-                        }
-                    }
-                }
-            }
-        }
-        System.out.println();
+        System.out.println("\nShowing grouped patients list by doctor name:");
+        doctorList.forEach(doctor -> {
+            System.out.print("\nDr." + doctor.getFirstName() + " " + doctor.getLastName() + " (" + doctor.getSpeciality() + ") :\n");
+            appointmentList.stream()
+                    .filter(appointment -> doctor.getId() == appointment.getDoctorId())
+                    .forEach(appointment -> {
+                        patientList.stream()
+                                .filter(patient -> patient.getId() == appointment.getPatientId())
+                                .forEach(patient -> System.out.print(patient + "\n"));
+                    });
+            System.out.println("----------------------------");
+        });
     }
 
     protected static void groupPatientsBySpeciality() {
-        System.out.println("Showing grouped patients by speciality:");
-        for (Doctor doctor : doctorList) {
-            boolean specialityPrinted = false;
-            for (Appointment appointment : appointmentList) {
-                if (doctor.getId() == appointment.getDoctorId()) {
-                    if (!specialityPrinted) {
-                        System.out.println("\n" + doctor.getSpeciality() + ": ");
-                    }
-                    specialityPrinted = true;
-                    for (Patient patient : patientList) {
-                        if (appointment.getPatientId() == patient.getId()) {
-                            System.out.println(patient.getFirstName() + " " + patient.getLastName() + " " + appointment.getDate() + " " + appointment.getTime());
-                        }
-                    }
-                }
-            }
-        }
-        System.out.println();
+        System.out.println("\nShowing grouped patients by speciality:");
+        doctorList.forEach(doctor -> {
+            System.out.println(doctor.getSpeciality() + ":");
+            appointmentList.stream()
+                    .filter(appointment -> doctor.getId() == appointment.getDoctorId())
+                    .forEach(appointment -> {
+                        patientList.stream()
+                                .filter(patient -> patient.getId() == appointment.getPatientId())
+                                .forEach(patient -> System.out.print(patient + "\n"));
+
+                    });
+            System.out.println("----------------------------");
+        });
     }
 
     protected static void groupPatientsByDate() {

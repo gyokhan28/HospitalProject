@@ -11,14 +11,13 @@ public class UserLoginSelector {
             choice = sc.nextLine();
             switch (choice) {
                 case "1" -> {
-                    LoginDoctor loginDoctor = new LoginDoctor();
-                    loginDoctor.verifyUserIdentity();
+                    LoginDoctor.verifyUserIdentity();
                 }
                 case "2" -> {
-                    LoginPatient loginPatient = new LoginPatient();
+                    LoginPatient.verify();
                 }
                 case "ADMIN" -> {
-                    LoginAdmin loginAdmin = new LoginAdmin();
+                    LoginAdmin.verify();
                 }
                 default -> System.out.print("Wrong input! Try again: ");
             }
