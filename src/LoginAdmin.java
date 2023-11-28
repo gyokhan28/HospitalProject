@@ -3,17 +3,15 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LoginAdmin {
-    public LoginAdmin() throws IOException {
-        verify();
-    }
 
-    protected void verify() throws IOException {
+    protected static void verify() throws IOException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter administrator password:");
+        System.out.print("Enter administrator password:");
         String password = sc.nextLine();
 
         if (password.equals("ADMIN")){
-            AdminMenu adminMenu = new AdminMenu();
+            System.out.println("Logged in as Administrator!");
+            AdminMenu.showMenu();
             return;
         }
         System.out.println("Incorrect Administrator password! Please try again!");

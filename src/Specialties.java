@@ -1,6 +1,6 @@
-public enum Specialties {
+public enum  Specialties {
      ANESTHESIOLOGY,
-    INTERNALDISEASES,
+     INTERNAL_DISEASES,
      GASTROENTEROLOGY,
      ENDOCRINOLOGY,
      CARDIOLOGY,

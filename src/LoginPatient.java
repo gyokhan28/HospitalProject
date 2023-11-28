@@ -4,16 +4,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LoginPatient {
-    PatientFileManager patientFileManager;
-
-    protected List<Patient> patientList;
+    protected static List<Patient> patientList;
 
     public LoginPatient() throws IOException {
-        patientList = PatientFileManager.loadPatients();
         verify();
     }
 
-    protected void verify() throws IOException {
+    protected static void verify() throws IOException {
+        patientList = PatientFileManager.loadPatients();
         System.out.print("Enter patient ID: ");
         Scanner sc = new Scanner(System.in);
         int id = 0;
