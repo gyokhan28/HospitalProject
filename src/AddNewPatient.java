@@ -28,7 +28,7 @@ public class AddNewPatient {
         System.out.println();
     }
     private int returnLastID() throws IOException {
-       patientList = PatientFileManager.loadPatients();
+        patientList = PatientFileManager.loadPatients();
         return patientList.get(patientList.size() - 1).getId();
     }
     private void writePatientInFile(List<Patient> patients) throws IOException {
