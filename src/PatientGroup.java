@@ -7,8 +7,8 @@ public class PatientGroup {
     private final List<Patient> patientList;
 
     public PatientGroup() throws IOException {
-        this.doctorList = DoctorFileManager.loadDoctors("Doctors.csv");
-        this.appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+        this.doctorList = DoctorFileManager.loadDoctors();
+        this.appointmentList = AppointmentsFileManager.loadAppointments();
         this.patientList = PatientFileManager.loadPatients();
     }
 

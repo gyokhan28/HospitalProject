@@ -14,9 +14,9 @@ public class LoginPatient {
     }
 
     protected void verify() throws IOException {
-        System.out.println("Enter patient ID:");
+        System.out.print("Enter patient ID: ");
         Scanner sc = new Scanner(System.in);
-        int id = -1;
+        int id = 0;
         boolean formatFlag = false;
         while (!formatFlag) {
             try {
@@ -27,7 +27,7 @@ public class LoginPatient {
                 sc.next();
             }
         }
-        System.out.println("Enter name:");
+        System.out.print("Enter name: ");
         sc.nextLine();
         String name = sc.nextLine();
         for (Patient patient : patientList) {

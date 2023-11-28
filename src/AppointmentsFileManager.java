@@ -4,9 +4,9 @@ import java.util.List;
 
 public class AppointmentsFileManager {
 
-    public static List<Appointment> loadAppointments(String fileName) throws IOException {
+    public static List<Appointment> loadAppointments() throws IOException {
         List<Appointment> appointmentList = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("Appointments.csv"));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             String[] info = line.split(",");

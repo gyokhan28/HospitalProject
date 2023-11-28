@@ -10,19 +10,17 @@ public class UserLoginSelector {
         do {
             choice = sc.nextLine();
             switch (choice) {
-                case "1":
+                case "1" -> {
                     LoginDoctor loginDoctor = new LoginDoctor();
                     loginDoctor.verifyUserIdentity();
-                    break;
-                case "2":
+                }
+                case "2" -> {
                     LoginPatient loginPatient = new LoginPatient();
-                    break;
-                case "ADMIN":
+                }
+                case "ADMIN" -> {
                     LoginAdmin loginAdmin = new LoginAdmin();
-                    break;
-                default:
-                    System.out.print("Wrong input! Try again: ");
-                    break;
+                }
+                default -> System.out.print("Wrong input! Try again: ");
             }
         } while (!choice.equals("1") && !choice.equals("2")&&!choice.equals("ADMIN"));
     }

@@ -9,7 +9,7 @@ public class AppointmentAdder {
     private final List<Doctor> doctorsList;
 
     public AppointmentAdder() throws IOException {
-        doctorsList = DoctorFileManager.loadDoctors("Doctors.csv");
+        doctorsList = DoctorFileManager.loadDoctors();
     }
 
 
@@ -90,7 +90,7 @@ public class AppointmentAdder {
     }
 
     public int returnLastID() throws IOException {
-        List<Appointment> appointmentList = AppointmentsFileManager.loadAppointments("Appointments copy.csv");
+        List<Appointment> appointmentList = AppointmentsFileManager.loadAppointments();
         return appointmentList.get(appointmentList.size() - 1).getAppointmentId();
     }
 }

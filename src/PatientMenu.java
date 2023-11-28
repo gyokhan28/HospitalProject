@@ -14,7 +14,7 @@ public class PatientMenu {
         this.firstName = firstName;
         this.lastName = lastName;
         this.patientList = patientList;
-        appointmentsList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+        appointmentsList = AppointmentsFileManager.loadAppointments();
         showMenu();
 
     }
@@ -22,16 +22,22 @@ public class PatientMenu {
     public void showMenu() throws IOException {
         System.out.println("Logged in as " + firstName + " " + lastName + "!");
         System.out.println("1. Book a new doctor's appointment.");
+        boolean flag =false;
         for (Appointment a : appointmentsList) {
             if (a.getPatientId() == id) {
-                System.out.println("2. View of recorded hours for a patient.");
-                System.out.println("3. Change the date/time of a recorded appointment.");
-                System.out.println("4. Canceling an appointment.");
-                chooseAnOption();
-            } else {
-                createNewAppointment();
+                flag = true;
+                break;
             }
+
         }
+        if(flag){
+            System.out.println("2. View of recorded hours for a patient.");
+            System.out.println("3. Change the date/time of a recorded appointment.");
+            System.out.println("4. Canceling an appointment.");
+
+        }
+        System.out.println("0. Exit.");
+        chooseAnOption();
     }
 
     public void createNewAppointment() throws IOException {
@@ -84,9 +90,10 @@ public class PatientMenu {
                     cancelingByAppointmentId.cancelAppointment(id);
                     showMenu();
                 }
+                case 0-> System.out.println("You exit!");
 
                 default -> System.out.print("Wrong input! Try again: ");
             }
-        } while (choice != 1 && choice != 2 && choice != 3);
+        } while (choice != 1 && choice != 2 && choice != 3 && choice != 0);
     }
 }

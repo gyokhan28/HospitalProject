@@ -7,7 +7,7 @@ public class LoginDoctor {
     protected Scanner sc;
 
     public LoginDoctor() throws IOException {
-        doctorList = DoctorFileManager.loadDoctors("Doctors.csv");
+        doctorList = DoctorFileManager.loadDoctors();
         sc = new Scanner(System.in);
     }
 

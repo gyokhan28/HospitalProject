@@ -10,7 +10,7 @@ public class AppointmentDisplayer {
     private final List<Patient> patientList;
 
     public AppointmentDisplayer(int id, List<Doctor> doctorList) throws IOException {
-        appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+        appointmentList = AppointmentsFileManager.loadAppointments();
         patientList = PatientFileManager.loadPatients();
         this.doctorList = doctorList;
         this.personalDoctorId = id;

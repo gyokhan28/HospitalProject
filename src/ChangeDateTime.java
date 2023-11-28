@@ -8,7 +8,7 @@ public class ChangeDateTime {
     AppointmentsFileManager appointmentsFileManager = new AppointmentsFileManager();
 
     public ChangeDateTime() throws IOException {
-        this.appointmentsList = appointmentsFileManager.loadAppointments("Appointments.csv");
+        this.appointmentsList = appointmentsFileManager.loadAppointments();
     }
 
     public void changeDateAnaTimeForAppointment(int patientID) throws IOException {

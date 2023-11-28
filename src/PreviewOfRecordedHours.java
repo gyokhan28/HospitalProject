@@ -6,7 +6,7 @@ public class PreviewOfRecordedHours {
     List<Appointment>appointmentsList;
 
     public PreviewOfRecordedHours() throws IOException {
-        this.appointmentsList =AppointmentsFileManager.loadAppointments("Appointments.csv");
+        this.appointmentsList =AppointmentsFileManager.loadAppointments();
     }
     public void showRecordedHours(int id){
         boolean isHave = false;
