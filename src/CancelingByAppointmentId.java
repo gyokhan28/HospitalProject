@@ -8,7 +8,7 @@ public class CancelingByAppointmentId {
     AppointmentsFileManager appointmentsFileManager = new AppointmentsFileManager();
 
     public CancelingByAppointmentId() throws IOException {
-        this.appointmentsList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+        this.appointmentsList = AppointmentsFileManager.loadAppointments();
     }
 
     public void cancelAppointment(int patientID) throws IOException {

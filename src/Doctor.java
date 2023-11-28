@@ -10,6 +10,12 @@ public class Doctor {
         this.lastName = lastName;
         this.speciality = speciality;
     }
+    public Doctor(){
+        setId(0);
+        setFirstName("Unnamed");
+        setLastName("Unnamed");
+        setSpeciality("speciality");
+    }
     public int getId() {
         return id;
     }
