@@ -6,8 +6,8 @@ public class AddNewDoctor {
     private static List<Doctor> doctorList;
     private static final DoctorFileManager doctorFileManager = new DoctorFileManager();
 
-    public AddNewDoctor() throws IOException {
-        doctorList = DoctorFileManager.loadDoctors();
+    public AddNewDoctor(List<Doctor> doctorList) throws IOException {
+        AddNewDoctor.doctorList = DoctorFileManager.loadDoctors();
     }
 
     public static void addNewDoctor() throws IOException {
