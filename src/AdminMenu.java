@@ -3,13 +3,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AdminMenu {
-    List<Patient>patientList;
-    List<Doctor>doctorList;
+    List<Patient> patientList;
+    List<Doctor> doctorList;
+
     public AdminMenu() throws IOException {
-        patientList= PatientFileManager.loadPatients();
-        doctorList=DoctorFileManager.loadDoctors();
+        patientList = PatientFileManager.loadPatients();
+        doctorList = DoctorFileManager.loadDoctors();
         showMenu();
     }
+
     public void showMenu() throws IOException {
         System.out.println("Logged in as Administrator!");
         System.out.println("1. Add new doctor");
@@ -17,31 +19,33 @@ public class AdminMenu {
         System.out.println("0. Exit.");
         chooseAnOption();
     }
-    public void chooseAnOption() throws IOException {
-        Scanner sc = new Scanner(System.in);
-        int choice = 0;
-        System.out.print("Enter your choice: ");
-        do {
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1 -> {
-                    System.out.println("***  Add new doctor *** ");
-                    System.out.println();
-                    AddNewDoctor addNewDoctor = new AddNewDoctor(doctorList);
-                    addNewDoctor.addNewDoctor();
-                    showMenu();
-                }
-                case 2 -> {
-                    System.out.println("*** Add new patient ***");
-                    System.out.println();
-                    AddNewPatient addNewPatient = new AddNewPatient(patientList);
-                    addNewPatient.addNewPatient();
-                    showMenu();
-                }
-                case 0 -> System.out.println("Exit!");
 
-                default -> System.out.print("Wrong input! Try again: ");
-            }
-        } while (choice != 1 && choice != 2 && choice != 0);
+    public void chooseAnOption() throws IOException {
+        try (Scanner sc = new Scanner(System.in)) {
+            int choice;
+            System.out.print("Enter your choice: ");
+            do {
+                choice = sc.nextInt();
+                switch (choice) {
+                    case 1 -> {
+                        System.out.println("***  Add new doctor *** ");
+                        System.out.println();
+                        AddNewDoctor addNewDoctor = new AddNewDoctor(doctorList);
+                        addNewDoctor.addNewDoctor();
+                        showMenu();
+                    }
+                    case 2 -> {
+                        System.out.println("*** Add new patient ***");
+                        System.out.println();
+                        AddNewPatient addNewPatient = new AddNewPatient(patientList);
+                        addNewPatient.addNewPatient();
+                        showMenu();
+                    }
+                    case 0 -> System.out.println("Exit!");
+
+                    default -> System.out.print("Wrong input! Try again: ");
+                }
+            } while (choice != 1 && choice != 2 && choice != 0);
+        }
     }
 }
