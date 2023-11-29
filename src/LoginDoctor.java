@@ -3,15 +3,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LoginDoctor {
-    protected List<Doctor> doctorList;
-    protected Scanner sc;
+    protected static List<Doctor> doctorList;
+    protected static Scanner sc;
 
-    public LoginDoctor() throws IOException {
+    protected static void verifyUserIdentity() throws IOException {
         doctorList = DoctorFileManager.loadDoctors();
         sc = new Scanner(System.in);
-    }
-
-    protected void verifyUserIdentity() throws IOException {
         int id = getIdFromUser();
         System.out.print("Enter name: ");
         String name = sc.nextLine();
@@ -29,7 +26,7 @@ public class LoginDoctor {
         }
     }
 
-    public int getIdFromUser() {
+    public static int getIdFromUser() {
         System.out.print("Enter ID: ");
         Scanner sc = new Scanner(System.in);
         int id;
