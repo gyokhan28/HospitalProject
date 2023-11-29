@@ -7,7 +7,7 @@ public class PatientMenu {
     protected String firstName, lastName;
 
     private List<Patient> patientList;
-    private List<Appointment> appointmentsList;
+    protected List<Appointment> appointmentsList;
 
     public PatientMenu(int id, String firstName, String lastName, List<Patient> patientList) throws IOException {
         this.id = id;

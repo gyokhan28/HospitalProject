@@ -24,19 +24,16 @@ public class DoctorMenu {
         do {
             choice = sc.nextLine();
             switch (choice) {
-                case "1":
+                case "1" -> {
                     appointmentDisplayer.loadAppointmentsForSelectedDoctor();
                     showMenu();
-                    break;
-                case "2":
-                    appointmentSorter.sortChoice();
-                    break;
-                case "3":
+                }
+                case "2" -> appointmentSorter.sortChoice();
+                case "3" -> {
                     PatientGroup.showGroupingMenu();
                     showMenu();
-                    break;
-                default:
-                    System.out.print("Wrong input! Try again: ");
+                }
+                default -> System.out.print("Wrong input! Try again: ");
             }
         } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3"));
     }

@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PreviewOfRecordedHours {
-    List<Appointment>appointmentsList;
+    protected List<Appointment>appointmentsList;
 
     public PreviewOfRecordedHours() throws IOException {
-        this.appointmentsList =AppointmentsFileManager.loadAppointments();
+        this.appointmentsList = AppointmentsFileManager.loadAppointments();
     }
     public void showRecordedHours(int id){
         boolean isHave = false;

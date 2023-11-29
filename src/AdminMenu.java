@@ -6,7 +6,7 @@ public class AdminMenu {
     List<Patient>patientList;
     List<Doctor>doctorList;
     public AdminMenu() throws IOException {
-        patientList=PatientFileManager.loadPatients();
+        patientList= PatientFileManager.loadPatients();
         doctorList=DoctorFileManager.loadDoctors();
         showMenu();
     }
