@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class PatientGroup {
     private static List<Doctor> doctorList;
@@ -61,23 +62,17 @@ public class PatientGroup {
     }
 
     protected static void groupPatientsByDate() {
-        System.out.println("Showing grouped patients by date of appointment:");
-        for (Doctor doctor : doctorList) {
-            boolean datePrinted = false;
-            for (Appointment appointment : appointmentList) {
-                if (doctor.getId() == appointment.getDoctorId()) {
-                    if (!datePrinted) {
-                        System.out.println("\n" + appointment.getDate() + ": ");
-                    }
-                    datePrinted = true;
-                    for (Patient patient : patientList) {
-                        if (appointment.getPatientId() == patient.getId()) {
-                            System.out.println(patient.getFirstName() + " " + patient.getLastName() + " " + appointment.getDate() + " " + appointment.getTime());
-                        }
-                    }
-                }
-            }
-        }
-        System.out.println();
+        System.out.println("\nShowing grouped patients by date of appointment:\n");
+        appointmentList.stream().collect(Collectors.groupingBy(Appointment::getDate))
+                .forEach((date, appointments) -> {
+                    System.out.println(date + ":");
+                    appointments.forEach(appointment -> {
+                        patientList.stream()
+                                .filter(patient -> patient.getId() == appointment.getPatientId())
+                                .forEach(patient -> System.out.print(patient + "\n"));
+                    });
+                    System.out.println("----------------------------");
+                });
     }
 }
+

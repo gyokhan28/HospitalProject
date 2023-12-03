@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DoctorMenu {
-    private final AppointmentDisplayer appointmentDisplayer;
-    private final AppointmentSorter appointmentSorter;
+    private AppointmentDisplayer appointmentDisplayer;
+    private AppointmentSorter appointmentSorter;
 
     public DoctorMenu(int id, String firstName, String lastName, List<Doctor> doctorList) throws IOException {
         appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
@@ -28,7 +28,10 @@ public class DoctorMenu {
                     appointmentDisplayer.loadAppointmentsForSelectedDoctor();
                     showMenu();
                 }
-                case "2" -> appointmentSorter.sortChoice();
+                case "2" -> {
+                    appointmentSorter.sortChoice();
+                    showMenu();
+                }
                 case "3" -> {
                     PatientGroup.showGroupingMenu();
                     showMenu();
