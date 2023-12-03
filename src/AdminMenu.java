@@ -3,21 +3,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AdminMenu {
-    List<Patient>patientList;
-    List<Doctor>doctorList;
+    static List<Patient> patientList;
+    static List<Doctor> doctorList;
     public AdminMenu() throws IOException {
         patientList=PatientFileManager.loadPatients();
         doctorList=DoctorFileManager.loadDoctors();
         showMenu();
     }
-    public void showMenu() throws IOException {
+    public static void showMenu() throws IOException {
         System.out.println("Logged in as Administrator!");
         System.out.println("1. Add new doctor");
         System.out.println("2. Add new patient");
         System.out.println("0. Exit.");
         chooseAnOption();
     }
-    public void chooseAnOption() throws IOException {
+    public static void chooseAnOption() throws IOException {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         System.out.print("Enter your choice: ");
