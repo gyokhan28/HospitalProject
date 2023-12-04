@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LoginAdmin {
@@ -12,7 +11,6 @@ public class LoginAdmin {
         if (password.equals("ADMIN")){
             System.out.println("Logged in as Administrator!");
             AdminMenu.showMenu();
-            return;
         }
         System.out.println("Incorrect Administrator password! Please try again!");
         verify();

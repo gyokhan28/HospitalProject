@@ -4,9 +4,9 @@ import java.util.List;
 
 public class AppointmentsFileManager {
 
-    public static List<Appointment> loadAppointments() throws IOException {
+    public static List<Appointment> loadAppointments(String fileName) throws IOException {
         List<Appointment> appointmentList = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("Appointments.csv"));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             String[] info = line.split(",");
@@ -15,8 +15,8 @@ public class AppointmentsFileManager {
         return appointmentList;
     }
 
-    public void writeAppointments(List<Appointment> appointments) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("Appointments new copy.csv"));
+    public static void writeAppointments(List<Appointment> appointments, String fileName) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
         for (Appointment appointment : appointments) {
             bufferedWriter.write(appointment.getAppointmentId() + "," + appointment.getPatientId() + "," + appointment.getTypeOfExamination() + "," + appointment.getDate() + "," + appointment.getTime() + "," + appointment.getDoctorId());
             bufferedWriter.newLine();

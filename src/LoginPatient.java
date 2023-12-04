@@ -11,7 +11,7 @@ public class LoginPatient {
     }
 
     protected static void verify() throws IOException {
-        patientList = PatientFileManager.loadPatients();
+        patientList = PatientFileManager.loadPatients("Patients.csv");
         System.out.print("Enter patient ID: ");
         Scanner sc = new Scanner(System.in);
         int id = 0;

@@ -8,7 +8,7 @@ public class CancelingByAppointmentId {
     AppointmentsFileManager appointmentsFileManager = new AppointmentsFileManager();
 
     public CancelingByAppointmentId() throws IOException {
-        this.appointmentsList = AppointmentsFileManager.loadAppointments();
+        this.appointmentsList = AppointmentsFileManager.loadAppointments("Appointments.csv");
     }
 
     public void cancelAppointment(int patientID) throws IOException {
@@ -21,7 +21,7 @@ public class CancelingByAppointmentId {
             boolean isFoundIDIsCorrect = checkIfTheIDIsCorrect(appointmentId, patientID);
             if (isFoundIDIsCorrect) {
                 appointmentsList.removeIf(appointment -> appointment.getAppointmentId()==appointmentId);
-                appointmentsFileManager.writeAppointments(appointmentsList);
+                appointmentsFileManager.writeAppointments(appointmentsList, "Appointments.csv");
                 System.out.println("Yor appointment is canceled!");
             }else{
                 System.out.println("Wrong Input!");

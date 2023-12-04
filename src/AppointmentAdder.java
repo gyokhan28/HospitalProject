@@ -125,8 +125,8 @@ public class AppointmentAdder {
             return returnDoctorID();
         }
 
-        public int returnLastID () throws IOException {
-            List<Appointment> appointmentList = AppointmentsFileManager.loadAppointments();
+        public static int returnLastID () throws IOException {
+            List<Appointment> appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
             return appointmentList.get(appointmentList.size() - 1).getAppointmentId();
         }
     }

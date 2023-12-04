@@ -4,8 +4,8 @@ import java.util.List;
 
 public class PatientFileManager {
 
-    public static List<Patient> loadPatients() throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("Patients.csv"));
+    public static List<Patient> loadPatients(String fileName) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
         List<Patient> patientList = new ArrayList<>();
         String line;
         while ((line = bufferedReader.readLine()) != null) {
@@ -14,8 +14,8 @@ public class PatientFileManager {
         }
         return patientList;
     }
-    public void writePatient(List<Patient> patients) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("Patients new.csv"));
+    public static void writePatient(List<Patient> patients, String fileName) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
         for (Patient patient : patients) {
             bufferedWriter.write(patient.getId() + "," + patient.getFirstName() + "," + patient.getLastName() + "," + patient.getAge());
             bufferedWriter.newLine();
