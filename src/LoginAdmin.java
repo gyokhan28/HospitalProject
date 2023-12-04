@@ -9,10 +9,10 @@ public class LoginAdmin {
         String password = sc.nextLine();
 
         if (password.equals("ADMIN")){
-            System.out.println("Logged in as Administrator!");
             AdminMenu.showMenu();
+        }else {
+            System.out.println("Incorrect Administrator password! Please try again!");
+            verify();
         }
-        System.out.println("Incorrect Administrator password! Please try again!");
-        verify();
     }
 }
