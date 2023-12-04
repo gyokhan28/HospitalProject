@@ -59,11 +59,11 @@ public class Patient implements Comparable<Patient> {
     }
 
     @Override
-    public int compareTo(Patient o) {
-        if(this.getFirstName().compareTo(o.getFirstName())!=0){
-            return this.getFirstName().compareTo(o.getFirstName());
+    public int compareTo(Patient patient) {
+        if(this.getFirstName().compareTo(patient.getFirstName())!=0){
+            return this.getFirstName().compareTo(patient.getFirstName());
         } else {
-            return this.getLastName().compareTo(o.getLastName());
+            return this.getLastName().compareTo(patient.getLastName());
         }
     }
 }

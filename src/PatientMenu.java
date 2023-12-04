@@ -14,7 +14,7 @@ public class PatientMenu {
         this.firstName = firstName;
         this.lastName = lastName;
         this.patientList = patientList;
-        appointmentsList = AppointmentsFileManager.loadAppointments();
+        appointmentsList = AppointmentsFileManager.loadAppointments("Appointments.csv");
         showMenu();
 
     }

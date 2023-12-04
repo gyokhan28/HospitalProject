@@ -25,8 +25,8 @@ public class PatientGroup {
 
     protected static void loadLists() throws IOException {
         doctorList = DoctorFileManager.loadDoctors();
-        appointmentList = AppointmentsFileManager.loadAppointments();
-        patientList = PatientFileManager.loadPatients();
+        appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+        patientList = PatientFileManager.loadPatients("Patients.csv");
     }
 
     protected static void groupPatientsByDoctorName() {
