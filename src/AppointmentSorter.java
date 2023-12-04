@@ -46,7 +46,7 @@ public class AppointmentSorter {
                 default:
                     System.out.print("Wrong input! Try again: ");
             }
-        } while (!choice.equals("1") && !choice.equals("2"));
+        } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("0"));
     }
 
     public String takeId() {
@@ -60,7 +60,7 @@ public class AppointmentSorter {
             try {
                 int testId = Integer.parseInt(id);
                 return id;
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid ID!");
                 return takeId();
             }

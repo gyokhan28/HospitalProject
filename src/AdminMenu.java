@@ -3,8 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AdminMenu {
+
     static List<Patient>patientList;
     static List<Doctor>doctorList;
+
     public AdminMenu() throws IOException {
         patientList=PatientFileManager.loadPatients("Patients.csv");
         doctorList=DoctorFileManager.loadDoctors();

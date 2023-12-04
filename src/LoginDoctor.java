@@ -16,7 +16,7 @@ public class LoginDoctor {
         for (Doctor doctor : doctorList) {
             if (id == doctor.getId() && name.equalsIgnoreCase(doctor.getFirstName())) {
                 isFound = true;
-                DoctorMenu doctorMenu = new DoctorMenu(doctor.getId(), doctor.getFirstName(), doctor.getLastName(), doctorList);
+                DoctorMenu doctorMenu = new DoctorMenu(id, doctor.getFirstName(), doctor.getLastName(), doctorList);
                 doctorMenu.showMenu();
             }
         }
