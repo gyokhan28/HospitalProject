@@ -36,10 +36,7 @@ public class AppointmentFileManagerTest {
         //WHEN
         List<Appointment> appointmentListFromFile = AppointmentsFileManager.loadAppointments("Appointments.csv");
 
-        //THEN
-        System.out.println("Expected: " + appointments);
-        System.out.println("Actual: " + appointmentListFromFile);
-        Assertions.assertTrue(appointmentListFromFile.equals(appointments));
+        Assertions.assertEquals(appointmentListFromFile, appointments);
     }
 
     @Test
@@ -58,18 +55,31 @@ public class AppointmentFileManagerTest {
         List<Appointment> appointmentListFromFile = AppointmentsFileManager.loadAppointments("Appointments.csv");
 
         //THEN
-        System.out.println("Expected: " + appointments);
-        System.out.println("Actual: " + appointmentListFromFile);
         Assertions.assertEquals(appointmentListFromFile.size(), appointments.size());
     }
 
     @Test
+    void checkWriteMethod() throws IOException {
+        //GIVEN
+        List<Appointment> appointments = new ArrayList<>();
+        appointments.add(new Appointment(1, 7, "initial", "15-03-2023", 1030, 12));
+        appointments.add(new Appointment(2, 5, "consultation", "18-04-2023", 1520, 3));
+        appointments.add(new Appointment(3, 4, "secondary", "15-05-2023", 1230, 8));
+
+        //WHEN
+        AppointmentsFileManager.writeAppointments(appointments,"Appointments For Test.csv");
+        List<Appointment> appointmentListFromFile = AppointmentsFileManager.loadAppointments("Appointments For Test.csv");
+
+        //THEN
+        Assertions.assertEquals(appointmentListFromFile, appointments);
+    }
+    @Test
     void checkWriteMethodBySize() throws IOException {
         //GIVEN
         List<Appointment> appointments = new ArrayList<>();
-        appointments.add(new Appointment(1, 7, "initial", "15 - 03 - 2023", 1030, 12));
-        appointments.add(new Appointment(2, 5, "consultation", "18 - 04 - 2023", 1520, 3));
-        appointments.add(new Appointment(3, 4, "secondary", "15 - 05 - 2023", 1230, 8));
+        appointments.add(new Appointment(1, 7, "initial", "15-03-2023", 1030, 12));
+        appointments.add(new Appointment(2, 5, "consultation", "18-04-2023", 1520, 3));
+        appointments.add(new Appointment(3, 4, "secondary", "15-05-2023", 1230, 8));
 
         //WHEN
         AppointmentsFileManager.writeAppointments(appointments, "Appointments For Test 2.csv");
@@ -87,5 +97,17 @@ public class AppointmentFileManagerTest {
 
         //THEN
         Assertions.assertNotNull(appointments);
+    }
+    @Test
+    void testMethod(){
+        //GIVEN
+        List<Appointment>numbers = new ArrayList<>();
+        numbers.add(new Appointment(1, 7, "initial", "15-03-2023", 1030, 12));
+
+        List<Appointment>numbers2 = new ArrayList<>();
+        numbers2.add(new Appointment(1, 7, "initial", "15-03-2023", 1030, 12));
+
+
+        Assertions.assertEquals(numbers, numbers2);
     }
 }

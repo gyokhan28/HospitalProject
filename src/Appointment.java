@@ -73,6 +73,23 @@ public class Appointment {
                 ", Time:" + time +
                 ", Doctor ID:" + doctorId;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Appointment)) {
+            return false;
+        }
+        Appointment appointmentRight = (Appointment)obj;
+        if(this.appointmentId==appointmentRight.getAppointmentId()&&
+       this.patientId==appointmentRight.getPatientId()&&
+        this.typeOfExamination.equals(appointmentRight.getTypeOfExamination())&&
+        this.date.equals(appointmentRight.getDate())&&
+        this.time==appointmentRight.getTime()&&
+        this.doctorId==appointmentRight.getDoctorId()){
+            return true;
+        }else{
+            return false;
+        }
 
 
+    }
 }
