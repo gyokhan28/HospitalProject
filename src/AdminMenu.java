@@ -21,28 +21,28 @@ public class AdminMenu {
     }
     public static void chooseAnOption() throws IOException {
         Scanner sc = new Scanner(System.in);
-        int choice = 0;
+        String choice = "";
         System.out.print("Enter your choice: ");
         do {
-            choice = sc.nextInt();
+            choice = sc.next();
             switch (choice) {
-                case 1 -> {
+                case "1" -> {
                     System.out.println("***  Add new doctor *** ");
                     System.out.println();
                     AddNewDoctor.addNewDoctor();
                     showMenu();
                 }
-                case 2 -> {
+                case "2" -> {
                     System.out.println("*** Add new patient ***");
                     System.out.println();
                     AddNewPatient addNewPatient = new AddNewPatient(patientList);
                     addNewPatient.addNewPatient();
                     showMenu();
                 }
-                case 0 -> System.out.println("Exit!");
+                case "0" -> System.out.println("Exit!");
 
                 default -> System.out.print("Wrong input! Try again: ");
             }
-        } while (choice != 1 && choice != 2 && choice != 0);
+        } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("0"));
     }
 }
