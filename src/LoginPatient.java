@@ -9,6 +9,15 @@ public class LoginPatient {
     public LoginPatient() throws IOException {
         verify();
     }
+    protected static Patient returnPatient(int patientID){
+        for (Patient patient:patientList) {
+            if(patientID==patient.getId()){
+                return patient;
+            }
+        }
+        return null;
+    }
+
 
     protected static void verify() throws IOException {
         patientList = PatientFileManager.loadPatients("Patients.csv");

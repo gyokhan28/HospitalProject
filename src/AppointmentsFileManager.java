@@ -10,7 +10,8 @@ public class AppointmentsFileManager {
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             String[] info = line.split(",");
-            appointmentList.add(new Appointment(Integer.parseInt(info[0]), Integer.parseInt(info[1]), info[2], info[3], Integer.parseInt(info[4]), Integer.parseInt(info[5])));
+            Patient patient = LoginPatient.returnPatient(Integer.parseInt(info[1]));
+            appointmentList.add(new Appointment(Integer.parseInt(info[0]),patient , info[2], info[3], Integer.parseInt(info[4]), Integer.parseInt(info[5])));
         }
         return appointmentList;
     }
@@ -18,7 +19,7 @@ public class AppointmentsFileManager {
     public static void writeAppointments(List<Appointment> appointments, String fileName) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
         for (Appointment appointment : appointments) {
-            bufferedWriter.write(appointment.getAppointmentId() + "," + appointment.getPatientId() + "," + appointment.getTypeOfExamination() + "," + appointment.getDate() + "," + appointment.getTime() + "," + appointment.getDoctorId());
+            bufferedWriter.write(appointment.getAppointmentId() + "," + appointment.getPatient().getId() + "," + appointment.getTypeOfExamination() + "," + appointment.getDate() + "," + appointment.getTime() + "," + appointment.getDoctorId());
             bufferedWriter.newLine();
 
         }

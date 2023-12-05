@@ -41,15 +41,7 @@ public class AppointmentDisplayer {
         boolean isFound = false;
         for (Appointment a : appointmentList) {
             if (id == a.getDoctorId()) {
-                isFound = true;
-                String patientFirstName = "", patientLastName = "";
-                for (Patient p : patientList) {
-                    if (a.getPatientId() == p.getId()) {
-                        patientFirstName = p.getFirstName();
-                        patientLastName = p.getLastName();
-                    }
-                }
-                System.out.println("App. ID:" + a.getAppointmentId() + ", patient: " + patientFirstName + " " + patientLastName + ", Ex. type: " + a.getTypeOfExamination() + ", Date: " + a.getDate() + ", Time: " + a.getTime());
+                System.out.println("App. ID:" + a.getAppointmentId() + ", patient: " + a.getPatient().getFirstName()+ " " + a.getPatient().getLastName() + ", Ex. type: " + a.getTypeOfExamination() + ", Date: " + a.getDate() + ", Time: " + a.getTime());
             }
         }
         if (!isFound) {
