@@ -68,14 +68,13 @@ public class AppointmentSorter {
     }
 
     public void handleMenuChoice(String choice) throws IOException {
-        System.out.println("\n1.Sort by patient name");
-        System.out.println("2.Sort by appointment hour");
-        System.out.println("3.Sort by patient ID");
-        System.out.print("\nEnter your choice:");
+        System.out.print("\n1.Sort by patient name\n2.Sort by appointment hour\n3.Sort by patient ID\nEnter your choice:");
         sc = new Scanner(System.in);
-        String sortChoice = sc.next();
         String id;
+        String sortChoice;
         do {
+            sortChoice = sc.nextLine();
+
             switch (sortChoice) {
                 case "1":
                     id = takeId();
@@ -109,9 +108,8 @@ public class AppointmentSorter {
                     break;
                 default:
                     System.out.print("Wrong input! Try again: ");
-                    choice = sc.next();
             }
-        } while (!choice.equals("1") && !choice.equals("2"));
+        } while (!sortChoice.equals("1") && !sortChoice.equals("2") && !sortChoice.equals("3"));
     }
 
     public static String formatHour(int intHour) {

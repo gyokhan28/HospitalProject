@@ -29,8 +29,7 @@ public class AdminMenu {
                 case 1 -> {
                     System.out.println("***  Add new doctor *** ");
                     System.out.println();
-                    AddNewDoctor addNewDoctor = new AddNewDoctor(doctorList);
-                    addNewDoctor.addNewDoctor();
+                    AddNewDoctor.addNewDoctor();
                     showMenu();
                 }
                 case 2 -> {

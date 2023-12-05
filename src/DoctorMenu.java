@@ -3,13 +3,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DoctorMenu {
-    private AppointmentDisplayer appointmentDisplayer;
-    private AppointmentSorter appointmentSorter;
+    private final AppointmentDisplayer appointmentDisplayer;
+    private final AppointmentSorter appointmentSorter;
 
     public DoctorMenu(int id, String firstName, String lastName, List<Doctor> doctorList) throws IOException {
         appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
         appointmentSorter = new AppointmentSorter(id, doctorList, firstName, lastName);
-        System.out.println("\nLogged in as " + firstName + " " + lastName + "!");
     }
 
     public void showMenu() throws IOException {
