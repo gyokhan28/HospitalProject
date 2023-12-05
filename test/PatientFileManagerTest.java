@@ -40,7 +40,7 @@ public class PatientFileManagerTest {
         //THEN
         System.out.println("Expected: " + patientList);
         System.out.println("Actual: " + patientListFromFile);
-        Assertions.assertEquals(patientListFromFile, patientList,"Greshka");
+        Assertions.assertEquals(patientListFromFile, patientList);
     }
     @Test
     void checkBySizeLoadMethodWhenGiveCorrectList() throws IOException {
