@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AppointmentFileManagerTest {
     @Test
-    void checkLoadMethodWhenGiveWrongList() throws IOException {
+    void checkLoadMethodWhenGivenWrongList() throws IOException {
         //GIVEN
         List<Appointment> appointments = new ArrayList<>();
         appointments.add(new Appointment(1, 7, "initial", "15-03-2023", 1030, 12));
@@ -36,7 +36,6 @@ public class AppointmentFileManagerTest {
         //WHEN
         List<Appointment> appointmentListFromFile = AppointmentsFileManager.loadAppointments("Appointments.csv");
 
-        //THEN
         Assertions.assertEquals(appointmentListFromFile, appointments);
     }
 
@@ -74,7 +73,6 @@ public class AppointmentFileManagerTest {
         //THEN
         Assertions.assertEquals(appointmentListFromFile, appointments);
     }
-
     @Test
     void checkWriteMethodBySize() throws IOException {
         //GIVEN
