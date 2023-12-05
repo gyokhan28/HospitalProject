@@ -30,7 +30,7 @@ public class AppointmentDisplayer {
                     showAppointments(newId);
                     break;
                 } catch (NumberFormatException e) {
-                    System.out.print("You did not enter a correct id! Try again (1-"+doctorList.size()+"):");
+                    System.out.print("You did not enter a correct id! Try again (1-" + doctorList.size() + "):");
                     choice = sc.next();
                 }
             }
@@ -53,10 +53,14 @@ public class AppointmentDisplayer {
             }
         }
         if (!isFound) {
-            System.out.print("ID №" + id + " has no appointments! Try with another doctor ID: ");
-            Scanner sc = new Scanner(System.in);
-            int newId = sc.nextInt();
-            showAppointments(newId);
+            for(;;) {
+                System.out.print("Doctor not found/No appointments found! Try again with another doc. ID:");
+                Scanner sc = new Scanner(System.in);
+                if (sc.hasNextInt()) {
+                    showAppointments(sc.nextInt());
+                    break;
+                }
+            }
         }
     }
 }
