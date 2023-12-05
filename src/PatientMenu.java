@@ -24,7 +24,7 @@ public class PatientMenu {
         System.out.println("1. Book a new doctor's appointment.");
         boolean flag =false;
         for (Appointment a : appointmentsList) {
-            if (a.getPatientId() == id) {
+            if (a.getPatient().getId() == id) {
                 flag = true;
                 break;
             }
