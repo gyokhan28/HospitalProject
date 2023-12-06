@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -7,8 +6,9 @@ public class PatientGroup {
     private static List<Doctor> doctorList;
     private static List<Appointment> appointmentList;
     private static List<Patient> patientList;
+    private static Setup setup;
 
-    protected static void showGroupingMenu() throws IOException {
+    protected static void showGroupingMenu(){
         System.out.print("\n1.Group by doctor name\n2.Group by speciality\n3.Group by date of appointment:\nEnter your choice:");
         Scanner sc = new Scanner(System.in);
         PatientGroup.loadLists();
@@ -24,10 +24,10 @@ public class PatientGroup {
         } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3"));
     }
 
-    protected static void loadLists() throws IOException {
-        doctorList = DoctorFileManager.loadDoctors();
-        appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
-        patientList = PatientFileManager.loadPatients("Patients.csv");
+    protected static void loadLists(){
+        doctorList = setup.getDoctorList();
+        appointmentList = setup.getAppointmentList();
+        patientList = setup.getPatientList();
     }
 
     protected static void groupPatientsByDoctorName() {
@@ -38,7 +38,7 @@ public class PatientGroup {
                     .filter(appointment -> doctor.getId() == appointment.getDoctorId())
                     .forEach(appointment -> {
                         patientList.stream()
-                                .filter(patient -> patient.getId() == appointment.getPatientId())
+                                .filter(patient -> patient.getId() == appointment.getPatient().getId())
                                 .forEach(patient -> System.out.print(patient + "\n"));
                     });
             System.out.println("----------------------------");
@@ -53,7 +53,7 @@ public class PatientGroup {
                     .filter(appointment -> doctor.getId() == appointment.getDoctorId())
                     .forEach(appointment -> {
                         patientList.stream()
-                                .filter(patient -> patient.getId() == appointment.getPatientId())
+                                .filter(patient -> patient.getId() == appointment.getPatient().getId())
                                 .forEach(patient -> System.out.print(patient + "\n"));
 
                     });
@@ -68,7 +68,7 @@ public class PatientGroup {
                     System.out.println(date + ":");
                     appointments.forEach(appointment -> {
                         patientList.stream()
-                                .filter(patient -> patient.getId() == appointment.getPatientId())
+                                .filter(patient -> patient.getId() == appointment.getPatient().getId())
                                 .forEach(patient -> System.out.print(patient + "\n"));
                     });
                     System.out.println("----------------------------");

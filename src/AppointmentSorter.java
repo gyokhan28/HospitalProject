@@ -10,14 +10,15 @@ public class AppointmentSorter {
     private String sortingType;
     private final String docFirstName;
     private final String docLastName;
+    private Setup setup;
 
     public void setOrderType(String orderType) {
         this.sortingType = orderType;
     }
 
-    public AppointmentSorter(int id, List<Doctor> doctorList, String firstName, String lastName) throws IOException {
-        appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
-        patientList = PatientFileManager.loadPatients("Patients.csv");
+    public AppointmentSorter(int id, List<Doctor> doctorList, String firstName, String lastName){
+        appointmentList = setup.getAppointmentList();
+        patientList = setup.getPatientList();
         this.doctorList = doctorList;
         this.personalDoctorId = id;
         docFirstName = firstName;
@@ -137,7 +138,7 @@ public class AppointmentSorter {
         boolean isFound = false;
         for (Patient patient : patientList) {
             for (Appointment appointment : appointmentList) {
-                if (patient.getId() == appointment.getPatientId() && appointment.getDoctorId() == docId) {
+                if (patient.getId() == appointment.getPatient().getId() && appointment.getDoctorId() == docId) {
                     isFound = true;
                     System.out.print("Patient name:" + patient.getFirstName() + " " + patient.getLastName());
                     System.out.println(" | Appointment on:" + appointment.getDate() + ", at:" + formatHour(appointment.getTime()) + " (Examination:" + appointment.getTypeOfExamination() + ")");
@@ -171,8 +172,8 @@ public class AppointmentSorter {
     public void printSortedByPatientID(int docId, String sortingType) {
         List<Appointment> currentDocAppointments = getDoctorAppointments(docId);
         if (!currentDocAppointments.isEmpty()) {
-            Comparator<Appointment> patientIdComparator = Comparator.comparing(Appointment::getPatientId);
-            currentDocAppointments.sort(patientIdComparator);
+           // Comparator<Appointment> patientIdComparator = Comparator.comparing(Appointment::getPatientId);
+           // currentDocAppointments.sort(patientIdComparator);
             if (sortingType.equals("Ascending")) {
                 currentDocAppointments.forEach(System.out::println);
             } else {

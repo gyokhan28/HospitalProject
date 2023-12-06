@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -9,13 +10,17 @@ import java.util.regex.Pattern;
 
 public class AppointmentAdder {
     private final List<Doctor> doctorsList;
+    private static List<Appointment>appointmentList = new ArrayList<>();
+    Setup setup = new Setup();
 
     public AppointmentAdder() throws IOException {
-        doctorsList = DoctorFileManager.loadDoctors();
+        doctorsList = setup.getDoctorList();
+        appointmentList= setup.getAppointmentList();
     }
 
 
     public void addNewHour(int iDPatient) throws IOException {
+        Patient patient = LoginPatient.returnPatient(iDPatient);
         Scanner sc = new Scanner(System.in);
         String regex = "\\d{2}-\\d{2}-\\d{4}";
         Pattern pattern = Pattern.compile(regex);
@@ -61,6 +66,7 @@ public class AppointmentAdder {
             int doctorID = returnDoctorID();
             System.out.println("Last ID" + lastID + " Examination type " + examinationType + " Date " + date + " time " + time + " doctor ID" + doctorID);
 
+            appointmentList.add(new Appointment(returnLastID()+1,patient,examinationType,date,time,doctorID));
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("Appointments copy.csv", true))) {
 
                 bw.write(returnLastID() + 1 + "," + iDPatient + "," + examinationType + "," + date + "," + time + "," + doctorID);
@@ -126,7 +132,7 @@ public class AppointmentAdder {
         }
 
         public static int returnLastID () throws IOException {
-            List<Appointment> appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
-            return appointmentList.get(appointmentList.size() - 1).getAppointmentId();
+        //List<Appointment> appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+            return appointmentList.get(appointmentList.size()-1).getAppointmentId();
         }
     }
