@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 public class ChangeDateTime {
     List<Appointment> appointmentsList;
     PreviewOfRecordedHours previewOfRecordedHours = new PreviewOfRecordedHours();
-    //AppointmentsFileManager appointmentsFileManager;
+    Setup setup;
 
     public ChangeDateTime() throws IOException {
-        this.appointmentsList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+        this.appointmentsList = setup.getAppointmentList();
     }
 
     public void changeDateAnaTimeForAppointment(int patientID) throws IOException {
@@ -64,14 +64,14 @@ public class ChangeDateTime {
             }
             public boolean checkIfTheIDIsCorrect ( int appointmentID, int patientID) throws IOException {
                 boolean isFound = false;
-                List<Appointment> appointmentsByPatient = previewOfRecordedHours.returnAppointmentListByPatientID(patientID);
-                if (!appointmentsByPatient.isEmpty()) {
-                    for (Appointment appointment : appointmentsByPatient) {
-                        if (appointmentID == appointment.getAppointmentId()) {
+               // List<Appointment> appointmentsByPatient = previewOfRecordedHours.returnAppointmentListByPatientID(patientID);
+               // if (!appointmentsByPatient.isEmpty()) {
+                    for (Appointment appointment : appointmentsList) {
+                        if ((appointmentID == appointment.getAppointmentId())&&(patientID == appointment.getPatient().getId())) {
                             isFound = true;
                         }
                     }
-                }
+
                 return isFound;
             }
         }

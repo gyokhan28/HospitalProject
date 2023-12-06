@@ -5,23 +5,23 @@ import java.util.Scanner;
 public class CancelingByAppointmentId {
     List<Appointment> appointmentsList;
     PreviewOfRecordedHours previewOfRecordedHours = new PreviewOfRecordedHours();
-    AppointmentsFileManager appointmentsFileManager = new AppointmentsFileManager();
+    Setup setup;
 
     public CancelingByAppointmentId() throws IOException {
-        this.appointmentsList = AppointmentsFileManager.loadAppointments("Appointments.csv");
+        this.appointmentsList = setup.getAppointmentList();
     }
 
     public void cancelAppointment(int patientID) throws IOException {
         Scanner sc = new Scanner(System.in);
-        boolean isFoundPatientInTheList = returnIfPatientInTheList(patientID);
-        if (isFoundPatientInTheList) {
+       // boolean isFoundPatientInTheList = returnIfPatientInTheList(patientID);
+       // if (isFoundPatientInTheList) {
             previewOfRecordedHours.showRecordedHours(patientID);
             System.out.print("Enter AppointmentID you want to cancel: ");
             int appointmentId = Integer.parseInt(sc.next());
             boolean isFoundIDIsCorrect = checkIfTheIDIsCorrect(appointmentId, patientID);
             if (isFoundIDIsCorrect) {
                 appointmentsList.removeIf(appointment -> appointment.getAppointmentId()==appointmentId);
-                appointmentsFileManager.writeAppointments(appointmentsList, "Appointments.csv");
+                AppointmentsFileManager.writeAppointments(appointmentsList, "Appointments.csv");
                 System.out.println("Yor appointment is canceled!");
             }else{
                 System.out.println("Wrong Input!");
@@ -29,33 +29,33 @@ public class CancelingByAppointmentId {
                 System.out.println();
                 cancelAppointment(patientID);
             }
-        } else {
-            System.out.println("You don't have any doctor appointments");
-        }
-    }
+        } //else {
+        //    System.out.println("You don't have any doctor appointments");
+     //   }
+   // }
 
-    private boolean returnIfPatientInTheList(int patientID) {
+   /* private boolean returnIfPatientInTheList(int patientID) {
         boolean isFound = false;
         for (Appointment appointment : appointmentsList) {
-            if (patientID == appointment.getPatientId()) {
+            if (patientID == appointment.getPatient().getId()) {
                 isFound = true;
                 break;
             }
         }
         return isFound;
     }
-
+*/
     public boolean checkIfTheIDIsCorrect(int appointmentID, int patientID) throws IOException {
         boolean isFound = false;
-        List<Appointment> appointmentsByPatient = previewOfRecordedHours.returnAppointmentListByPatientID(patientID);
-        if (!appointmentsByPatient.isEmpty()) {
-            for (Appointment appointment : appointmentsByPatient) {
-                if (appointmentID == appointment.getAppointmentId()) {
+       // List<Appointment> appointmentsByPatient = previewOfRecordedHours.returnAppointmentListByPatientID(patientID);
+       // if (!appointmentsByPatient.isEmpty()) {
+            for (Appointment appointment : appointmentsList) {
+                if ((appointmentID == appointment.getAppointmentId())&&(patientID==appointment.getPatient().getId())) {
                     isFound = true;
                     break;
                 }
             }
-        }
+    //    }
         return isFound;
     }
 }

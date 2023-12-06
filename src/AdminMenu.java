@@ -6,10 +6,11 @@ public class AdminMenu {
 
     static List<Patient>patientList;
     static List<Doctor>doctorList;
+    Setup setup;
 
     public AdminMenu() throws IOException {
-        patientList=PatientFileManager.loadPatients("Patients.csv");
-        doctorList=DoctorFileManager.loadDoctors();
+        patientList=setup.getPatientList();
+        doctorList=setup.getDoctorList();
         showMenu();
     }
     public static void showMenu() throws IOException {

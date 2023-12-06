@@ -11,7 +11,8 @@ public class UserLoginSelector {
 
                 }
                 case "2" -> {
-                    LoginPatient.verify();
+                    LoginPatient loginPatient = new LoginPatient();
+                    loginPatient.verify();
 
                 }
                 case "ADMIN" -> {

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class AddNewPatient {
     private List<Patient>patientList;
-    private PatientFileManager patientFileManager;
+    private Setup setup;
 
     public AddNewPatient(List<Patient> patientList) {
         this.patientList = patientList;
@@ -28,7 +28,7 @@ public class AddNewPatient {
         System.out.println();
     }
     private int returnLastID() throws IOException {
-        patientList = PatientFileManager.loadPatients("Patients.csv");
+        patientList = setup.getPatientList();
         return patientList.get(patientList.size() - 1).getId();
     }
     private void writePatientInFile(List<Patient> patients) throws IOException {

@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -6,11 +5,10 @@ public class AppointmentDisplayer {
     private final int personalDoctorId;
     private final List<Doctor> doctorList;
     private final List<Appointment> appointmentList;
-    private final List<Patient> patientList;
+    Setup setup;
 
-    public AppointmentDisplayer(int id, List<Doctor> doctorList) throws IOException {
-        appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
-        patientList = PatientFileManager.loadPatients("Patients.csv");
+    public AppointmentDisplayer(int id, List<Doctor> doctorList){
+        this.appointmentList = setup.getAppointmentList();
         this.doctorList = doctorList;
         this.personalDoctorId = id;
     }
