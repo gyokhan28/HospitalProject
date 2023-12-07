@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class PatientMenu {
@@ -36,15 +35,13 @@ public class PatientMenu {
             switch (choice) {
                 case "1" -> {
                     System.out.println("***  Book a new doctor's appointment *** ");
-                    AppointmentAdder appointmentAdder = new AppointmentAdder();
-                    appointmentAdder.addNewHour(patient.getId());
+                    AppointmentAdder.addNewHour(patient.getId());
                     showMenu(patient);
                 }
                 case "2" -> {
                     System.out.println("*** Showing recorded hours: ***");
                     System.out.println();
-                    PreviewOfRecordedHours recordedHours = new PreviewOfRecordedHours();
-                    recordedHours.showRecordedHours(patient.getId());
+                    PreviewOfRecordedHours.showRecordedHours(patient.getId());
                     showMenu(patient);
                 }
                 case "3" -> {
@@ -56,8 +53,7 @@ public class PatientMenu {
                 }
                 case "4" -> {
                     System.out.println("*** Canceling an appointment ***");
-                    CancelingByAppointmentId cancelingByAppointmentId = new CancelingByAppointmentId();
-                    cancelingByAppointmentId.cancelAppointment(patient.getId());
+                    CancelingByAppointmentId.cancelAppointment(patient.getId());
                     showMenu(patient);
                 }
                 case "0" -> {

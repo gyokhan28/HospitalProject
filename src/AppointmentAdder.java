@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class AppointmentAdder {
 
-    public void addNewHour(int iDPatient) throws IOException {
+    public static void addNewHour(int iDPatient) throws IOException {
         Patient patient = LoginPatient.returnPatient(iDPatient);
         Scanner sc = new Scanner(System.in);
         String regex = "\\d{2}-\\d{2}-\\d{4}";
@@ -71,37 +71,28 @@ public class AppointmentAdder {
 
         }
 
-        public String returnTypeOfExamination () {
+        public static String returnTypeOfExamination () {
             System.out.println("Please select the type of doctor's examination: ");
             System.out.println("1. Initial.");
             System.out.println("2. Secondary");
             System.out.println("3. Consultation");
             System.out.println("4. Procedure");
             Scanner sc = new Scanner(System.in);
-            int choice = 0;
-            boolean formatFlag = false;
-            while (!formatFlag) {
-                try {
-                    choice = sc.nextInt();
-                    formatFlag = true;
-                } catch (InputMismatchException e) {
-                    System.out.println("You must enter an integer!");
-                    sc.next();
-                }
-            }
+            String choice;
             do {
+                choice = sc.nextLine();
                 switch (choice) {
-                    case 1 -> {
+                    case "1" -> {
                         return "Initial";
                     }
-                    case 2 -> {
+                    case "2" -> {
 
                         return "Secondary";
                     }
-                    case 3 -> {
+                    case "3" -> {
                         return "Consultation";
                     }
-                    case 4 -> {
+                    case "4" -> {
                         return "Procedure";
                     }
                     default -> System.out.print("Wrong input! Try again: ");
@@ -109,7 +100,7 @@ public class AppointmentAdder {
             } while (true);
         }
 
-        public int returnDoctorID () {
+        public static int returnDoctorID() {
             Scanner sc = new Scanner(System.in);
             System.out.print("Please enter the name of the doctor you wish to see: ");
             String doctorName = sc.next();
