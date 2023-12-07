@@ -1,19 +1,20 @@
+import javax.print.Doc;
+
 public class Appointment {
     private int appointmentId;
-    //private int patientId;
     public Patient patient;
     private String typeOfExamination;
     private String date;
     private int time;
-    private int doctorId;
+    private Doctor doctor;
 
-    public Appointment(int appointmentId, Patient patient, String typeOfExamination, String date, int time, int doctorId) {
+    public Appointment(int appointmentId, Patient patient, String typeOfExamination, String date, int time, Doctor doctor) {
         setAppointmentId(appointmentId);
         setPatient(patient);
         setTypeOfExamination(typeOfExamination);
         setDate(date);
         setTime(time);
-        setDoctorId(doctorId);
+        setDoctor(doctor);
     }
 
     public Patient getPatient() {
@@ -31,7 +32,6 @@ public class Appointment {
     public void setAppointmentId(int appointmentId) {
         this.appointmentId = appointmentId;
     }
-
 
 
     public String getTypeOfExamination() {
@@ -58,12 +58,12 @@ public class Appointment {
         this.time = time;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     @Override
@@ -74,22 +74,23 @@ public class Appointment {
                 ", Examination type:" + typeOfExamination +
                 ", Date:" + date +
                 ", Time:" + time +
-                ", Doctor ID:" + doctorId;
+                ", Doctor ID:" + doctor.getId();
     }
+
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Appointment)) {
+        if (!(obj instanceof Appointment)) {
             return false;
         }
-        Appointment appointmentRight = (Appointment)obj;
-        if(this.appointmentId==appointmentRight.getAppointmentId()&&
-       this.patient.getId()==appointmentRight.patient.getId()&&
-        this.typeOfExamination.equals(appointmentRight.getTypeOfExamination())&&
-        this.date.equals(appointmentRight.getDate())&&
-        this.time==appointmentRight.getTime()&&
-        this.doctorId==appointmentRight.getDoctorId()){
+        Appointment appointmentRight = (Appointment) obj;
+        if (this.appointmentId == appointmentRight.getAppointmentId() &&
+                this.patient.getId() == appointmentRight.patient.getId() &&
+                this.typeOfExamination.equals(appointmentRight.getTypeOfExamination()) &&
+                this.date.equals(appointmentRight.getDate()) &&
+                this.time == appointmentRight.getTime() &&
+                this.doctor.getId() == appointmentRight.doctor.getId()) {
             return true;
-        }else{
+        } else {
             return false;
         }
 

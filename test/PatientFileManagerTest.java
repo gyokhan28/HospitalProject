@@ -38,8 +38,6 @@ public class PatientFileManagerTest {
         List<Patient> patientListFromFile = PatientFileManager.loadPatients("Patients.csv");
 
         //THEN
-        System.out.println("Expected: " + patientList);
-        System.out.println("Actual: " + patientListFromFile);
         Assertions.assertEquals(patientListFromFile, patientList);
     }
     @Test
@@ -60,8 +58,6 @@ public class PatientFileManagerTest {
         List<Patient> patientListFromFile = PatientFileManager.loadPatients("Patients.csv");
 
         //THEN
-        System.out.println("Expected: " + patientList);
-        System.out.println("Actual: " + patientListFromFile);
         Assertions.assertEquals(patientListFromFile.size(), patientList.size());
     }
     @Test

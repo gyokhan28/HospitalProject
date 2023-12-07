@@ -1,27 +1,27 @@
 import java.io.IOException;
 import java.util.List;
 
-public class Setup {
-    private final List<Doctor>doctorList;
-    private final List<Patient>patientList;
-    private final List<Appointment>appointmentList;
+public abstract class Setup {
+    private static List<Doctor> doctorList;
+    private static List<Patient> patientList;
+    private static List<Appointment> appointmentList;
 
-    public Setup() throws IOException {
+    public static void loadLists() throws IOException {
         doctorList = DoctorFileManager.loadDoctors();
         patientList = PatientFileManager.loadPatients("Patients.csv");
         appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
     }
 
-    public List<Doctor> getDoctorList() {
+    public static List<Doctor> getDoctorList() {
         return doctorList;
     }
 
 
-    public List<Patient> getPatientList() {
+    public static List<Patient> getPatientList() {
         return patientList;
     }
 
-    public List<Appointment> getAppointmentList() {
+    public static List<Appointment> getAppointmentList() {
         return appointmentList;
     }
 

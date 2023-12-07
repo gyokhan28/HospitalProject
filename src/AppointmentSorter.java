@@ -3,23 +3,16 @@ import java.util.*;
 
 public class AppointmentSorter {
     private final int personalDoctorId;
-    private final List<Doctor> doctorList;
-    private final List<Appointment> appointmentList;
-    private final List<Patient> patientList;
     private Scanner sc;
     private String sortingType;
     private final String docFirstName;
     private final String docLastName;
-    private Setup setup;
 
     public void setOrderType(String orderType) {
         this.sortingType = orderType;
     }
 
-    public AppointmentSorter(int id, List<Doctor> doctorList, String firstName, String lastName){
-        appointmentList = setup.getAppointmentList();
-        patientList = setup.getPatientList();
-        this.doctorList = doctorList;
+    public AppointmentSorter(int id, String firstName, String lastName) {
         this.personalDoctorId = id;
         docFirstName = firstName;
         docLastName = lastName;
@@ -34,15 +27,15 @@ public class AppointmentSorter {
             choice = sc.next();
             switch (choice) {
                 case "0":
-                    DoctorMenu doctorMenu = new DoctorMenu(personalDoctorId, docFirstName, docLastName, doctorList);
+                    DoctorMenu doctorMenu = new DoctorMenu(personalDoctorId, docFirstName, docLastName, Setup.getDoctorList());
                     doctorMenu.showMenu();
                 case "1":
                     setOrderType("Ascending");
-                    handleMenuChoice(choice);
+                    handleMenuChoice();
                     break;
                 case "2":
                     setOrderType("Descending");
-                    handleMenuChoice(choice);
+                    handleMenuChoice();
                     break;
                 default:
                     System.out.print("Wrong input! Try again: ");
@@ -54,12 +47,11 @@ public class AppointmentSorter {
         sc = new Scanner(System.in);
         System.out.print("Enter ID:");
         String id = sc.nextLine();
-        boolean flag = false;
         if (id.isEmpty()) {
             return "";
         } else {
             try {
-                int testId = Integer.parseInt(id);
+                Integer.parseInt(id);
                 return id;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid ID!");
@@ -68,7 +60,7 @@ public class AppointmentSorter {
         }
     }
 
-    public void handleMenuChoice(String choice) throws IOException {
+    public void handleMenuChoice() throws IOException {
         System.out.print("\n1.Sort by patient name\n2.Sort by appointment hour\n3.Sort by patient ID\nEnter your choice:");
         sc = new Scanner(System.in);
         String id;
@@ -122,8 +114,8 @@ public class AppointmentSorter {
 
     public List<Appointment> getDoctorAppointments(int docId) {
         List<Appointment> currentDocAppointments = new ArrayList<>();
-        for (Appointment a : appointmentList) {
-            if (a.getDoctorId() == docId) {
+        for (Appointment a : Setup.getAppointmentList()) {
+            if (a.getDoctor().getId() == docId) {
                 currentDocAppointments.add(a);
             }
         }
@@ -131,14 +123,14 @@ public class AppointmentSorter {
     }
 
     public void printSortedByNameAppointments(int docId, String orderType) {
-        Collections.sort(patientList);
+        Collections.sort(Setup.getPatientList());
         if (orderType.equals("Descending")) {
-            Collections.reverse(patientList);
+            Collections.reverse(Setup.getPatientList());
         }
         boolean isFound = false;
-        for (Patient patient : patientList) {
-            for (Appointment appointment : appointmentList) {
-                if (patient.getId() == appointment.getPatient().getId() && appointment.getDoctorId() == docId) {
+        for (Patient patient : Setup.getPatientList()) {
+            for (Appointment appointment : Setup.getAppointmentList()) {
+                if (patient.getId() == appointment.getPatient().getId() && appointment.getDoctor().getId() == docId) {
                     isFound = true;
                     System.out.print("Patient name:" + patient.getFirstName() + " " + patient.getLastName());
                     System.out.println(" | Appointment on:" + appointment.getDate() + ", at:" + formatHour(appointment.getTime()) + " (Examination:" + appointment.getTypeOfExamination() + ")");
@@ -172,8 +164,6 @@ public class AppointmentSorter {
     public void printSortedByPatientID(int docId, String sortingType) {
         List<Appointment> currentDocAppointments = getDoctorAppointments(docId);
         if (!currentDocAppointments.isEmpty()) {
-           // Comparator<Appointment> patientIdComparator = Comparator.comparing(Appointment::getPatientId);
-           // currentDocAppointments.sort(patientIdComparator);
             if (sortingType.equals("Ascending")) {
                 currentDocAppointments.forEach(System.out::println);
             } else {

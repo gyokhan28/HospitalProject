@@ -3,15 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddNewDoctor {
-    private static List<Doctor> doctorList;
     private static final DoctorFileManager doctorFileManager = new DoctorFileManager();
 
-    public AddNewDoctor(List<Doctor> doctorList) throws IOException {
-        Setup setup = new Setup();
-        AddNewDoctor.doctorList = setup.getDoctorList();
-    }
-
     public static void addNewDoctor() throws IOException {
+        List<Doctor> newDoctorsList = Setup.getDoctorList();
         Scanner sc = new Scanner(System.in);
         Doctor newDoctor = new Doctor();
         newDoctor.setId(returnLastID() + 1);
@@ -34,15 +29,14 @@ public class AddNewDoctor {
             speciality = sc.next();
         }
         newDoctor.setSpeciality(speciality);
-        doctorList.add(newDoctor);
-        writeDoctorInFile(doctorList);
+        newDoctorsList.add(newDoctor);
+        writeDoctorInFile(newDoctorsList);
         System.out.println("Тhe new doctor is added!");
         System.out.println();
     }
 
-    private static int returnLastID() throws IOException {
-        doctorList = DoctorFileManager.loadDoctors();
-        return doctorList.get(doctorList.size() - 1).getId();
+    private static int returnLastID() {
+        return Setup.getDoctorList().get(Setup.getDoctorList().size() - 1).getId();
     }
 
     private static void writeDoctorInFile(List<Doctor> doctors) throws IOException {
