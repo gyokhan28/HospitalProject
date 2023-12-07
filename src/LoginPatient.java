@@ -22,6 +22,7 @@ public class LoginPatient {
                 sc.next();
             }
         }
+
         System.out.print("Enter name: ");
         sc.nextLine();
         String name = sc.nextLine();
