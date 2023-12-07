@@ -9,15 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AppointmentAdder {
-    private final List<Doctor> doctorsList;
-    private static List<Appointment>appointmentList = new ArrayList<>();
-    Setup setup = new Setup();
-
-    public AppointmentAdder() throws IOException {
-        doctorsList = setup.getDoctorList();
-        appointmentList= setup.getAppointmentList();
-    }
-
 
     public void addNewHour(int iDPatient) throws IOException {
         Patient patient = LoginPatient.returnPatient(iDPatient);
@@ -66,7 +57,7 @@ public class AppointmentAdder {
             int doctorID = returnDoctorID();
             System.out.println("Last ID" + lastID + " Examination type " + examinationType + " Date " + date + " time " + time + " doctor ID" + doctorID);
 
-            appointmentList.add(new Appointment(returnLastID()+1,patient,examinationType,date,time,doctorID));
+            Setup.getAppointmentList().add(new Appointment(returnLastID()+1,patient,examinationType,date,time,LoginDoctor.returnDoctor(doctorID)));
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("Appointments copy.csv", true))) {
 
                 bw.write(returnLastID() + 1 + "," + iDPatient + "," + examinationType + "," + date + "," + time + "," + doctorID);
@@ -122,7 +113,7 @@ public class AppointmentAdder {
             Scanner sc = new Scanner(System.in);
             System.out.print("Please enter the name of the doctor you wish to see: ");
             String doctorName = sc.next();
-            for (Doctor doctor : doctorsList) {
+            for (Doctor doctor : Setup.getDoctorList()) {
                 if (doctorName.equalsIgnoreCase(doctor.getFirstName())) {
                     return doctor.getId();
                 }
@@ -132,7 +123,6 @@ public class AppointmentAdder {
         }
 
         public static int returnLastID () throws IOException {
-        //List<Appointment> appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
-            return appointmentList.get(appointmentList.size()-1).getAppointmentId();
+            return Setup.getAppointmentList().get(Setup.getAppointmentList().size()-1).getAppointmentId();
         }
     }

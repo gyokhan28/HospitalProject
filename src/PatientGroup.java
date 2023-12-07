@@ -35,7 +35,7 @@ public class PatientGroup {
         doctorList.forEach(doctor -> {
             System.out.print("\nDr." + doctor.getFirstName() + " " + doctor.getLastName() + " (" + doctor.getSpeciality() + ") :\n");
             appointmentList.stream()
-                    .filter(appointment -> doctor.getId() == appointment.getDoctorId())
+                    .filter(appointment -> doctor.getId() == appointment.getDoctor().getId())
                     .forEach(appointment -> {
                         patientList.stream()
                                 .filter(patient -> patient.getId() == appointment.getPatient().getId())
@@ -50,7 +50,7 @@ public class PatientGroup {
         doctorList.forEach(doctor -> {
             System.out.println(doctor.getSpeciality() + ":");
             appointmentList.stream()
-                    .filter(appointment -> doctor.getId() == appointment.getDoctorId())
+                    .filter(appointment -> doctor.getId() == appointment.getDoctor().getId())
                     .forEach(appointment -> {
                         patientList.stream()
                                 .filter(patient -> patient.getId() == appointment.getPatient().getId())

@@ -3,13 +3,9 @@ import java.util.Scanner;
 
 public class AppointmentDisplayer {
     private final int personalDoctorId;
-    private final List<Doctor> doctorList;
-    private final List<Appointment> appointmentList;
-    Setup setup;
 
     public AppointmentDisplayer(int id, List<Doctor> doctorList){
-        this.appointmentList = setup.getAppointmentList();
-        this.doctorList = doctorList;
+
         this.personalDoctorId = id;
     }
 
@@ -28,7 +24,7 @@ public class AppointmentDisplayer {
                     showAppointments(newId);
                     break;
                 } catch (NumberFormatException e) {
-                    System.out.print("You did not enter a correct id! Try again (1-" + doctorList.size() + "):");
+                    System.out.print("You did not enter a correct id! Try again (1-" + Setup.getDoctorList().size() + "):");
                     choice = sc.next();
                 }
             }
@@ -37,9 +33,10 @@ public class AppointmentDisplayer {
 
     public void showAppointments(int id) {
         boolean isFound = false;
-        for (Appointment a : appointmentList) {
-            if (id == a.getDoctorId()) {
+        for (Appointment a : Setup.getAppointmentList()) {
+            if (id == a.getDoctor().getId()) {
                 System.out.println("App. ID:" + a.getAppointmentId() + ", patient: " + a.getPatient().getFirstName()+ " " + a.getPatient().getLastName() + ", Ex. type: " + a.getTypeOfExamination() + ", Date: " + a.getDate() + ", Time: " + a.getTime());
+                isFound = true;
             }
         }
         if (!isFound) {

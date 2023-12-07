@@ -8,12 +8,11 @@ public class AppointmentAdderTest {
     void checkMethodForReturningLastID() throws IOException {
         //GIVEN
 
-
         //WHEN
-        int expected = AppointmentAdder.returnLastID();
+        int actual = AppointmentAdder.returnLastID();
 
         //THEN
-        int actual =8;
-        Assertions.assertEquals(expected,actual);
+        int expected = 8;
+        Assertions.assertEquals(expected, actual);
     }
 }

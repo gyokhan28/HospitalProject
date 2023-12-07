@@ -5,16 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LoginPatient {
-    protected static List<Patient> patientList = new ArrayList<>();
-    private Setup setup = new Setup();
-
-    public LoginPatient() throws IOException {
-        verify();
+    public LoginPatient() {
     }
 
-    protected  void verify() throws IOException {
-        patientList = setup.getPatientList();
-        System.out.println(patientList);
+    protected static void verify() throws IOException {
         System.out.print("Enter patient ID: ");
         Scanner sc = new Scanner(System.in);
         int id = 0;
@@ -31,18 +25,24 @@ public class LoginPatient {
         System.out.print("Enter name: ");
         sc.nextLine();
         String name = sc.nextLine();
-        for (Patient patient : patientList) {
+        boolean isFound = false;
+        for (Patient patient : Setup.getPatientList()) {
             if (id == (patient.getId()) && name.equalsIgnoreCase(patient.getFirstName())) {
-                PatientMenu patientMenu = new PatientMenu(patient.getId(), patient.getFirstName(), patient.getLastName(), patientList);
-                return;
+                System.out.println("Logged in as " + patient.getFirstName() + " " + patient.getLastName() + "!");
+                PatientMenu.showMenu(patient);
+                isFound = true;
+                break;
             }
         }
-        System.out.println("Incorrect ID or patientname! Please try again!");
-        verify();
+        if(!isFound) {
+            System.out.println("Incorrect ID or patient name! Please try again!");
+            verify();
+        }
     }
-    protected static Patient returnPatient(int patientID){
-        for (Patient patient:patientList) {
-            if(patientID==patient.getId()){
+
+    protected static Patient returnPatient(int patientID) {
+        for (Patient patient : Setup.getPatientList()) {
+            if (patientID == patient.getId()) {
                 return patient;
             }
         }

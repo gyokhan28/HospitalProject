@@ -13,7 +13,7 @@ public class PreviewOfRecordedHours {
         boolean isHave = false;
         for (Appointment appointment:appointmentsList) {
             if(id== appointment.getPatient().getId()){
-                System.out.println("Appointment ID: "+appointment.getAppointmentId()+ " Type of examination: "+appointment.getTypeOfExamination()+" Date: "+appointment.getDate()+" Time: "+appointment.getTime()+" Doctor ID: "+appointment.getDoctorId());
+                System.out.println("Appointment ID: "+appointment.getAppointmentId()+ " Type of examination: "+appointment.getTypeOfExamination()+" Date: "+appointment.getDate()+" Time: "+appointment.getTime()+" Doctor ID: "+appointment.getDoctor().getId());
                 isHave=true;
             }
         }

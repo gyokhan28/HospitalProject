@@ -1,18 +1,12 @@
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class AdminMenu {
 
-    static List<Patient>patientList;
-    static List<Doctor>doctorList;
-    Setup setup;
-
     public AdminMenu() throws IOException {
-        patientList=setup.getPatientList();
-        doctorList=setup.getDoctorList();
         showMenu();
     }
+
     public static void showMenu() throws IOException {
         System.out.println("Logged in as Administrator!");
         System.out.println("1. Add new doctor");
@@ -20,6 +14,7 @@ public class AdminMenu {
         System.out.println("0. Exit.");
         chooseAnOption();
     }
+
     public static void chooseAnOption() throws IOException {
         Scanner sc = new Scanner(System.in);
         String choice = "";
@@ -36,11 +31,17 @@ public class AdminMenu {
                 case "2" -> {
                     System.out.println("*** Add new patient ***");
                     System.out.println();
-                    AddNewPatient addNewPatient = new AddNewPatient(patientList);
+                    AddNewPatient addNewPatient = new AddNewPatient();
                     addNewPatient.addNewPatient();
                     showMenu();
                 }
-                case "0" -> System.out.println("Exit!");
+                case "0" -> {
+                    System.out.println("Leaving the Admin menu...");
+                    Effects.wait(2500);
+                    System.out.println("Clearing data...");
+                    Effects.wait(1000);
+                    System.out.println("Exiting...");
+                }
 
                 default -> System.out.print("Wrong input! Try again: ");
             }

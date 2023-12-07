@@ -4,97 +4,71 @@ import java.util.Scanner;
 
 public class PatientMenu {
     protected int id;
-    protected String firstName, lastName;
 
-    private List<Patient> patientList;
-    protected List<Appointment> appointmentsList;
-
-    public PatientMenu(int id, String firstName, String lastName, List<Patient> patientList) throws IOException {
+    public PatientMenu(int id) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.patientList = patientList;
-        Setup setup = new Setup();
-        appointmentsList = setup.getAppointmentList();
-        showMenu();
-
     }
 
-    public void showMenu() throws IOException {
-        System.out.println("Logged in as " + firstName + " " + lastName + "!");
+    public static void showMenu(Patient patient) throws IOException {
         System.out.println("1. Book a new doctor's appointment.");
-        boolean flag =false;
-        for (Appointment a : appointmentsList) {
-            if (a.getPatient().getId() == id) {
+        boolean flag = false;
+        for (Appointment a : Setup.getAppointmentList()) {
+            if (a.getPatient().getId() == patient.getId()) {
                 flag = true;
                 break;
             }
-
         }
-        if(flag){
+        if (flag) {
             System.out.println("2. View of recorded hours for a patient.");
             System.out.println("3. Change the date/time of a recorded appointment.");
             System.out.println("4. Canceling an appointment.");
-
         }
         System.out.println("0. Exit.");
-        chooseAnOption();
+        chooseAnOption(patient);
     }
 
-    public void createNewAppointment() throws IOException {
+    public static void chooseAnOption(Patient patient) throws IOException {
         Scanner sc = new Scanner(System.in);
-        int choice;
+        String choice;
         System.out.print("Enter your choice: ");
         do {
-            choice = sc.nextInt();
-            if (choice == 1) {
-                System.out.println("***  Book a new doctor's appointment *** ");
-                AppointmentAdder appointmentAdder = new AppointmentAdder();
-                appointmentAdder.addNewHour(id);
-                showMenu();
-            } else {
-                System.out.print("Wrong input! Try again: ");
-            }
-        } while (choice != 1);
-    }
-
-    public void chooseAnOption() throws IOException {
-        Scanner sc = new Scanner(System.in);
-        int choice = 0;
-        System.out.print("Enter your choice: ");
-        do {
-            choice = sc.nextInt();
+            choice = sc.nextLine();
             switch (choice) {
-                case 1 -> {
+                case "1" -> {
                     System.out.println("***  Book a new doctor's appointment *** ");
                     AppointmentAdder appointmentAdder = new AppointmentAdder();
-                    appointmentAdder.addNewHour(id);
-                    showMenu();
+                    appointmentAdder.addNewHour(patient.getId());
+                    showMenu(patient);
                 }
-                case 2 -> {
-                    System.out.println("*** View of recorded hours for a " + firstName + " " + lastName + " ***");
+                case "2" -> {
+                    System.out.println("*** Showing recorded hours: ***");
                     System.out.println();
                     PreviewOfRecordedHours recordedHours = new PreviewOfRecordedHours();
-                    recordedHours.showRecordedHours(id);
-                    showMenu();
+                    recordedHours.showRecordedHours(patient.getId());
+                    showMenu(patient);
                 }
-                case 3 -> {
+                case "3" -> {
                     System.out.println("***  Change the date/time of a recorded appointment *** ");
                     System.out.println();
                     ChangeDateTime changeDateTime = new ChangeDateTime();
-                    changeDateTime.changeDateAnaTimeForAppointment(id);
-                    showMenu();
+                    changeDateTime.changeDateAnaTimeForAppointment(patient.getId());
+                    showMenu(patient);
                 }
-                case 4 -> {
+                case "4" -> {
                     System.out.println("*** Canceling an appointment ***");
                     CancelingByAppointmentId cancelingByAppointmentId = new CancelingByAppointmentId();
-                    cancelingByAppointmentId.cancelAppointment(id);
-                    showMenu();
+                    cancelingByAppointmentId.cancelAppointment(patient.getId());
+                    showMenu(patient);
                 }
-                case 0-> System.out.println("You exit!");
-
+                case "0" -> {
+                    System.out.println("Closing the R & G Hospital Program...");
+                    Effects.wait(2500);
+                    System.out.println("Clearing data...");
+                    Effects.wait(1500);
+                    System.out.println("Exiting...");
+                }
                 default -> System.out.print("Wrong input! Try again: ");
             }
-        } while (choice != 1 && choice != 2 && choice != 3 && choice != 0);
+        } while (!choice.equals("0") && !choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4"));
     }
 }
