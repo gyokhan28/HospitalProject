@@ -26,26 +26,27 @@ public class AppointmentSorter {
         do {
             choice = sc.next();
             switch (choice) {
-                case "0":
-                    DoctorMenu doctorMenu = new DoctorMenu(personalDoctorId, docFirstName, docLastName, Setup.getDoctorList());
+                case "0" -> {
+                    DoctorMenu doctorMenu = new DoctorMenu(personalDoctorId, docFirstName, docLastName);
                     doctorMenu.showMenu();
-                case "1":
+                }
+                case "1" -> {
                     setOrderType("Ascending");
                     handleMenuChoice();
-                    break;
-                case "2":
+                }
+
+                case "2" -> {
                     setOrderType("Descending");
                     handleMenuChoice();
-                    break;
-                default:
-                    System.out.print("Wrong input! Try again: ");
+                }
+                default -> System.out.print("Wrong input! Try again: ");
             }
         } while (!choice.equals("1") && !choice.equals("2") && !choice.equals("0"));
     }
 
     public String takeId() {
         sc = new Scanner(System.in);
-        System.out.print("Enter ID:");
+        System.out.print("Enter Doctor ID (or press Enter to see yours):");
         String id = sc.nextLine();
         if (id.isEmpty()) {
             return "";
@@ -61,6 +62,8 @@ public class AppointmentSorter {
     }
 
     public void handleMenuChoice() throws IOException {
+        String redColor = "\u001B[31m", resetColor = "\u001B[0m";
+        System.out.println("\n" + redColor + sortingType + resetColor + " sorting is selected.");
         System.out.print("\n1.Sort by patient name\n2.Sort by appointment hour\n3.Sort by patient ID\nEnter your choice:");
         sc = new Scanner(System.in);
         String id;
@@ -74,7 +77,7 @@ public class AppointmentSorter {
                     if (!id.isEmpty()) {
                         printSortedByNameAppointments(Integer.parseInt(id), sortingType);
                     } else {
-                        System.out.println("Showing your appointments sorted by patient name:");
+                        System.out.println("\nShowing your appointments sorted by patient name:");
                         printSortedByNameAppointments(personalDoctorId, sortingType);
                     }
                     sortChoice();
@@ -84,7 +87,7 @@ public class AppointmentSorter {
                     if (!id.isEmpty()) {
                         printSortedByHourAppointments(Integer.parseInt(id), sortingType);
                     } else {
-                        System.out.println("Showing your appointment sorted by hour:");
+                        System.out.println("\nShowing your appointment sorted by hour:");
                         printSortedByHourAppointments(personalDoctorId, sortingType);
                     }
                     sortChoice();
@@ -94,7 +97,7 @@ public class AppointmentSorter {
                     if (!id.isEmpty()) {
                         printSortedByPatientID(Integer.parseInt(id), sortingType);
                     } else {
-                        System.out.println("Showing your appointment sorted by patient ID:");
+                        System.out.println("\nShowing your appointment sorted by patient ID:");
                         printSortedByPatientID(personalDoctorId, sortingType);
                     }
                     sortChoice();

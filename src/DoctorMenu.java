@@ -1,13 +1,12 @@
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class DoctorMenu {
     private final AppointmentDisplayer appointmentDisplayer;
     private final AppointmentSorter appointmentSorter;
 
-    public DoctorMenu(int id, String firstName, String lastName, List<Doctor> doctorList) {
-        appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
+    public DoctorMenu(int id, String firstName, String lastName) {
+        appointmentDisplayer = new AppointmentDisplayer(id, Setup.getDoctorList());
         appointmentSorter = new AppointmentSorter(id, firstName, lastName);
     }
 

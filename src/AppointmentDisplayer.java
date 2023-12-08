@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class AppointmentDisplayer {
     private final int personalDoctorId;
 
-    public AppointmentDisplayer(int id, List<Doctor> doctorList){
+    public AppointmentDisplayer(int id, List<Doctor> doctorList) {
 
         this.personalDoctorId = id;
     }
@@ -32,15 +32,22 @@ public class AppointmentDisplayer {
     }
 
     public void showAppointments(int id) {
-        boolean isFound = false;
+        boolean isFound = false, doctorPrinted = false;
         for (Appointment a : Setup.getAppointmentList()) {
             if (id == a.getDoctor().getId()) {
-                System.out.println("App. ID:" + a.getAppointmentId() + ", patient: " + a.getPatient().getFirstName()+ " " + a.getPatient().getLastName() + ", Ex. type: " + a.getTypeOfExamination() + ", Date: " + a.getDate() + ", Time: " + a.getTime());
+                if (personalDoctorId == a.getDoctor().getId()) {
+                    doctorPrinted = true;
+                }
+                if (!doctorPrinted) {
+                    System.out.println("Showing appointments of Dr." + a.getDoctor().getFirstName() + " " + a.getDoctor().getLastName() + " (ID " + a.getDoctor().getId() + "):");
+                    doctorPrinted = true;
+                }
+                System.out.println("App. ID:" + a.getAppointmentId() + ", patient: " + a.getPatient().getFirstName() + " " + a.getPatient().getLastName() + ", Ex. type: " + a.getTypeOfExamination() + ", Date: " + a.getDate() + ", Time: " + a.getTime());
                 isFound = true;
             }
         }
         if (!isFound) {
-            for(;;) {
+            for (; ; ) {
                 System.out.print("Doctor not found/No appointments found! Try again with another doc. ID:");
                 Scanner sc = new Scanner(System.in);
                 if (sc.hasNextInt()) {

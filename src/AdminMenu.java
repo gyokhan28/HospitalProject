@@ -11,7 +11,7 @@ public class AdminMenu {
         System.out.println("Logged in as Administrator!");
         System.out.println("1. Add new doctor");
         System.out.println("2. Add new patient");
-        System.out.println("0. Exit.");
+        System.out.println("0. Exit");
         chooseAnOption();
     }
 
