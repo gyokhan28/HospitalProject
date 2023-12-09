@@ -12,7 +12,6 @@ public class AdminMenu {
         System.out.println("1. Add new doctor");
         System.out.println("2. Add new patient");
         System.out.println("0. Exit");
-        chooseAnOption();
     }
 
     public static void chooseAnOption() throws IOException {
