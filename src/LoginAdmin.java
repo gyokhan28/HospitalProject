@@ -7,12 +7,10 @@ public class LoginAdmin {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter administrator password:");
         String password = sc.nextLine();
-
-        if (password.equals("ADMIN")){
-            AdminMenu.showMenu();
-        }else {
-            System.out.println("Incorrect Administrator password! Please try again!");
-            verify();
+        while (!password.equals("ADMIN")) {
+            System.out.print("Incorrect Administrator password! Please try again:");
+            password = sc.nextLine();
         }
+        AdminMenu.showMenu();
     }
 }

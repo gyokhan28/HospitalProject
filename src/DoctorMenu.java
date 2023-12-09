@@ -1,14 +1,13 @@
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class DoctorMenu {
     private final AppointmentDisplayer appointmentDisplayer;
     private final AppointmentSorter appointmentSorter;
 
-    public DoctorMenu(int id, String firstName, String lastName, List<Doctor> doctorList) {
-        appointmentDisplayer = new AppointmentDisplayer(id, doctorList);
-        appointmentSorter = new AppointmentSorter(id, firstName, lastName);
+    public DoctorMenu(int id) {
+        appointmentDisplayer = new AppointmentDisplayer(id, Setup.getDoctorList());
+        appointmentSorter = new AppointmentSorter(id,this);
     }
 
     public void showMenu() throws IOException {
@@ -29,7 +28,6 @@ public class DoctorMenu {
                 }
                 case "2" -> {
                     appointmentSorter.sortChoice();
-                    showMenu();
                 }
                 case "3" -> {
                     PatientGroup.showGroupingMenu();

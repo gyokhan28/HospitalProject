@@ -35,8 +35,7 @@ public class PatientMenu {
             switch (choice) {
                 case "1" -> {
                     System.out.println("***  Book a new doctor's appointment *** ");
-                    AppointmentAdder appointmentAdder = new AppointmentAdder();
-                    appointmentAdder.addNewHour(patient.getId());
+                    AppointmentAdder.addNewHour(patient.getId());
                     showMenu(patient);
                 }
                 case "2" -> {
@@ -54,8 +53,7 @@ public class PatientMenu {
                 }
                 case "4" -> {
                     System.out.println("*** Canceling an appointment ***");
-                    CancelingByAppointmentId cancelingByAppointmentId = new CancelingByAppointmentId();
-                    cancelingByAppointmentId.cancelAppointment(patient.getId());
+                    CancelingByAppointmentId.cancelAppointment(patient.getId());
                     showMenu(patient);
                 }
                 case "0" -> {
