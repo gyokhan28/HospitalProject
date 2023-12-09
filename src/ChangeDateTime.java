@@ -1,19 +1,11 @@
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ChangeDateTime {
-    List<Appointment> appointmentsList;
-    PreviewOfRecordedHours previewOfRecordedHours = new PreviewOfRecordedHours();
-    Setup setup;
 
-    public ChangeDateTime() throws IOException {
-        this.appointmentsList = setup.getAppointmentList();
-    }
-
-    public void changeDateAnaTimeForAppointment(int patientID) throws IOException {
+    public void changeDateAndTimeForAppointment(int patientID) throws IOException {
         Scanner sc = new Scanner(System.in);
 
         String regex = "\\d{2}-\\d{2}-\\d{4}";
@@ -24,12 +16,22 @@ public class ChangeDateTime {
         PreviewOfRecordedHours.showRecordedHours(patientID);
 
         System.out.print("Enter AppointmentID you want to change the date of: ");
-        int appointmentId = Integer.parseInt(sc.next());
+        int appointmentId;
+        for (; ; ) {
+            if (sc.hasNextInt()) {
+                appointmentId = Integer.parseInt(sc.next());
+                break;
+            } else {
+                System.out.print("Incorrect Appointment ID. Try again:");
+                sc.nextLine();
+            }
+        }
         sc.nextLine();
         boolean isFoundIDIsCorrect = checkIfTheIDIsCorrect(appointmentId, patientID);
         if (isFoundIDIsCorrect) {
-            for (Appointment appointment : appointmentsList) {
+            for (Appointment appointment : Setup.getAppointmentList()) {
                 if (appointmentId == appointment.getAppointmentId()) {
+                    Appointment changedAppointment = appointment;
                     do {
                         System.out.print("Enter new date for appointment in the format DD-MM-YYYY: ");
                         String enteredDate = sc.nextLine();
@@ -43,34 +45,71 @@ public class ChangeDateTime {
                                 date = enteredDate;
                                 flagForData = true;
                             } else {
-                                System.out.println("Invalid Data. Please try again.");
+                                System.out.println("Invalid Date. Please try again.");
                             }
 
                         } else {
                             System.out.println("Invalid date format. Please try again.");
                         }
                     } while (!flagForData);
-                    appointment.setDate(date);
-                    AppointmentsFileManager.writeAppointments(appointmentsList, "Appointments.csv");
-                    System.out.println("Yor new date is updated!");
-                }
-            }
-                } else {
-                    System.out.println("Wrong Input!");
-                    System.out.println("Your reserved appointment times are:");
-                    System.out.println();
-                    changeDateAnaTimeForAppointment(patientID);
-                }
-            }
-            public boolean checkIfTheIDIsCorrect ( int appointmentID, int patientID) throws IOException {
-                boolean isFound = false;
-                for (Appointment appointment : appointmentsList) {
-                        if ((appointmentID == appointment.getAppointmentId())&&(patientID == appointment.getPatient().getId())) {
-                            isFound = true;
-                        }
-                    }
+                    changedAppointment.setDate(date);
 
-                return isFound;
+                    System.out.print("Enter new time of examination in format HHMM:");
+                    int enteredTime = 0;
+                    boolean flagForTime = false;
+
+                    do {
+                        if (sc.hasNextInt()) {
+                            enteredTime = sc.nextInt();
+                            if (enteredTime >= 900 && enteredTime <= 1700) {
+                                flagForTime = true;
+                            } else {
+                                System.out.print("You must enter a time between 9:00 - 17:00! Try again:");
+                            }
+                        } else {
+                            System.out.print("You must enter a valid time! Try again:");
+                            sc.next();
+                        }
+                    } while (!flagForTime);
+                    changedAppointment.setTime(enteredTime);
+                    if (!appointmentAlreadyExists(changedAppointment)) {
+                        int index = Setup.getAppointmentList().indexOf(appointment);
+                        Setup.getAppointmentList().set(index, changedAppointment);
+                        AppointmentsFileManager.writeAppointments(Setup.getAppointmentList(), "Appointments.csv");
+                        System.out.println("Your new date is updated!\n");
+                    } else {
+                        System.out.println("Appointment already exists. Try again.");
+                        changeDateAndTimeForAppointment(appointment.getPatient().getId());
+                    }
+                }
+            }
+        } else {
+            System.out.println("Wrong Input!");
+            System.out.println("Your reserved appointment times are:");
+            System.out.println();
+            changeDateAndTimeForAppointment(patientID);
+        }
+    }
+
+    public static boolean appointmentAlreadyExists(Appointment appointment) {
+        return Setup.getAppointmentList().stream().anyMatch(appointment1 -> appointment1.getTime() == appointment.getTime() &&
+                appointment1.getDate().equals(appointment.getDate()) &&
+                appointment1.getDoctor().getFirstName().equals(appointment.getDoctor().getFirstName()) &&
+                appointment1.getDoctor().getLastName().equals(appointment.getDoctor().getLastName()));
+    }
+
+    public boolean checkIfTheIDIsCorrect(int appointmentID, int patientID) {
+        boolean isFound = false;
+        for (Appointment appointment : Setup.getAppointmentList()) {
+            if ((appointmentID == appointment.getAppointmentId()) && (patientID == appointment.getPatient().getId())) {
+                isFound = true;
+                break;
             }
         }
+
+        return isFound;
+    }
+
+
+}
 
