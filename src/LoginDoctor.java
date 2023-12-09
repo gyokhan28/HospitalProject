@@ -15,7 +15,7 @@ public class LoginDoctor {
             if (id == doctor.getId() && name.equalsIgnoreCase(doctor.getFirstName())) {
                 isFound = true;
                 System.out.println("\nLogged in as Dr." + doctor.getFirstName() + " " + doctor.getLastName() + "!");
-                DoctorMenu doctorMenu = new DoctorMenu(id, doctor.getFirstName(), doctor.getLastName());
+                DoctorMenu doctorMenu = new DoctorMenu(id);
                 doctorMenu.showMenu();
             }
         }

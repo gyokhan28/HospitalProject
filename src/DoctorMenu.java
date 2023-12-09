@@ -5,9 +5,9 @@ public class DoctorMenu {
     private final AppointmentDisplayer appointmentDisplayer;
     private final AppointmentSorter appointmentSorter;
 
-    public DoctorMenu(int id, String firstName, String lastName) {
+    public DoctorMenu(int id) {
         appointmentDisplayer = new AppointmentDisplayer(id, Setup.getDoctorList());
-        appointmentSorter = new AppointmentSorter(id, firstName, lastName);
+        appointmentSorter = new AppointmentSorter(id,this);
     }
 
     public void showMenu() throws IOException {
@@ -28,7 +28,6 @@ public class DoctorMenu {
                 }
                 case "2" -> {
                     appointmentSorter.sortChoice();
-                    showMenu();
                 }
                 case "3" -> {
                     PatientGroup.showGroupingMenu();

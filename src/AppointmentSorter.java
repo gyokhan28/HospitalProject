@@ -5,17 +5,24 @@ public class AppointmentSorter {
     private final int personalDoctorId;
     private Scanner sc;
     private String sortingType;
-    private final String docFirstName;
-    private final String docLastName;
+
+    private DoctorMenu doctorMenu;
+
+    public DoctorMenu getDoctorMenu() {
+        return doctorMenu;
+    }
+
+    public void setDoctorMenu(DoctorMenu doctorMenu) {
+        this.doctorMenu = doctorMenu;
+    }
 
     public void setOrderType(String orderType) {
         this.sortingType = orderType;
     }
 
-    public AppointmentSorter(int id, String firstName, String lastName) {
+    public AppointmentSorter(int id, DoctorMenu doctorMenu) {
         this.personalDoctorId = id;
-        docFirstName = firstName;
-        docLastName = lastName;
+        setDoctorMenu(doctorMenu);
     }
 
     public void sortChoice() throws IOException {
@@ -26,10 +33,7 @@ public class AppointmentSorter {
         do {
             choice = sc.next();
             switch (choice) {
-                case "0" -> {
-                    DoctorMenu doctorMenu = new DoctorMenu(personalDoctorId, docFirstName, docLastName);
-                    doctorMenu.showMenu();
-                }
+                case "0" -> doctorMenu.showMenu();
                 case "1" -> {
                     setOrderType("Ascending");
                     handleMenuChoice();
