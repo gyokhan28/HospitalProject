@@ -1,11 +1,4 @@
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 public class PreviewOfRecordedHours {
-
-    public PreviewOfRecordedHours(){
-    }
     public static void showRecordedHours(int id){
         boolean isHave = false;
         for (Appointment appointment:Setup.getAppointmentList()) {

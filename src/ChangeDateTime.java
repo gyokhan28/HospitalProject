@@ -21,7 +21,7 @@ public class ChangeDateTime {
         String date = "";
         boolean flagForData = false;
 
-        previewOfRecordedHours.showRecordedHours(patientID);
+        PreviewOfRecordedHours.showRecordedHours(patientID);
 
         System.out.print("Enter AppointmentID you want to change the date of: ");
         int appointmentId = Integer.parseInt(sc.next());
@@ -64,9 +64,7 @@ public class ChangeDateTime {
             }
             public boolean checkIfTheIDIsCorrect ( int appointmentID, int patientID) throws IOException {
                 boolean isFound = false;
-               // List<Appointment> appointmentsByPatient = previewOfRecordedHours.returnAppointmentListByPatientID(patientID);
-               // if (!appointmentsByPatient.isEmpty()) {
-                    for (Appointment appointment : appointmentsList) {
+                for (Appointment appointment : appointmentsList) {
                         if ((appointmentID == appointment.getAppointmentId())&&(patientID == appointment.getPatient().getId())) {
                             isFound = true;
                         }
