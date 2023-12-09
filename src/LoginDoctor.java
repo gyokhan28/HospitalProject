@@ -1,11 +1,10 @@
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class LoginDoctor {
     protected static Scanner sc;
 
-    protected static void verifyUserIdentity() throws IOException {
+    protected static void verify() throws IOException {
         sc = new Scanner(System.in);
         int id = getIdFromUser();
         System.out.print("Enter name: ");
@@ -21,7 +20,7 @@ public class LoginDoctor {
         }
         if (!isFound) {
             System.out.println("Incorrect ID/Name! Try again:");
-            verifyUserIdentity();
+            verify();
         }
     }
 

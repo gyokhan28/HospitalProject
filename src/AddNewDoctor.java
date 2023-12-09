@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddNewDoctor {
-    private static final DoctorFileManager doctorFileManager = new DoctorFileManager();
 
     public static void addNewDoctor() throws IOException {
         List<Doctor> newDoctorsList = Setup.getDoctorList();
@@ -21,14 +20,14 @@ public class AddNewDoctor {
         while (true) {
             try {
                 speciality = speciality.toUpperCase();
-                Specialties.valueOf(speciality);
+                Specialities.valueOf(speciality);
                 break;
             } catch (IllegalArgumentException ignored) {
                 System.out.print("There's no such speciality, try again:");
             }
             speciality = sc.next();
         }
-        newDoctor.setSpeciality(speciality);
+        newDoctor.setSpeciality(Specialities.valueOf(speciality.toUpperCase()));
         newDoctorsList.add(newDoctor);
         writeDoctorInFile(newDoctorsList);
         System.out.println("Тhe new doctor is added!");
@@ -40,6 +39,6 @@ public class AddNewDoctor {
     }
 
     private static void writeDoctorInFile(List<Doctor> doctors) throws IOException {
-        doctorFileManager.writeDoctor(doctors);
+        DoctorFileManager.writeDoctors(doctors,"Doctors.csv");
     }
 }

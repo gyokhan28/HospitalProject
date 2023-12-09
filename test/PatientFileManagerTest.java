@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -6,22 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatientFileManagerTest {
+    List<Patient> patientListFromFile;
+
+    @BeforeEach
+    void setup() throws IOException {
+        patientListFromFile = PatientFileManager.loadPatients("Patients For Test.csv");
+    }
+
     @Test
-    void checkLoadMethodWhenGiveWrongList() throws IOException {
+    void checkLoadMethodWhenWrongListIsGiven() throws IOException {
         //GIVEN
         List<Patient> patientList = new ArrayList<>();
         patientList.add(new Patient(1, "Maria", "Petrova", 25));
         patientList.add(new Patient(2, "Ivan", "Ivanov", 34));
         patientList.add(new Patient(3, "Konstantin", "Marinov", 34));
         //WHEN
-        List<Patient> patientListFromFile = PatientFileManager.loadPatients("Patients.csv");
 
         //THEN
         Assertions.assertNotEquals(patientListFromFile, patientList);
     }
 
     @Test
-    void checkLoadMethodWhenGiveCorrectList() throws IOException {
+    void checkLoadMethodWhenCorrectListGiven() throws IOException {
         //GIVEN
         List<Patient> patientList = new ArrayList<>();
         patientList.add(new Patient(1, "Maria", "Petrova", 25));
@@ -35,11 +43,11 @@ public class PatientFileManagerTest {
         patientList.add(new Patient(9, "Radostin", "Trifonov", 21));
         patientList.add(new Patient(10, "Milen", "Dobrev", 40));
         //WHEN
-        List<Patient> patientListFromFile = PatientFileManager.loadPatients("Patients.csv");
 
         //THEN
         Assertions.assertEquals(patientListFromFile, patientList);
     }
+
     @Test
     void checkBySizeLoadMethodWhenGiveCorrectList() throws IOException {
         //GIVEN
@@ -55,11 +63,11 @@ public class PatientFileManagerTest {
         patientList.add(new Patient(9, "Radostin", "Trifonov", 21));
         patientList.add(new Patient(10, "Milen", "Dobrev", 40));
         //WHEN
-        List<Patient> patientListFromFile = PatientFileManager.loadPatients("Patients.csv");
 
         //THEN
         Assertions.assertEquals(patientListFromFile.size(), patientList.size());
     }
+
     @Test
     void checkWriteMethod() throws IOException {
         //GIVEN
@@ -69,12 +77,13 @@ public class PatientFileManagerTest {
         patientList.add(new Patient(3, "Konstantin", "Marinov", 34));
 
         //WHEN
-        PatientFileManager.writePatient(patientList,"Patients For Test.csv");
-        List<Patient> patientListFromFile = PatientFileManager.loadPatients("Patients For Test.csv");
+        PatientFileManager.writePatient(patientList, "Patients For Test2.csv");
+        List<Patient> patientListFromFile = PatientFileManager.loadPatients("Patients For Test2.csv");
 
         //THEN
-        Assertions.assertEquals(patientListFromFile,patientList);
+        Assertions.assertEquals(patientListFromFile, patientList);
     }
+
     @Test
     void checkWriteMethodBySize() throws IOException {
         //GIVEN
@@ -88,8 +97,9 @@ public class PatientFileManagerTest {
         List<Patient> patientListFromFile = PatientFileManager.loadPatients("Patients For Test2.csv");
 
         //THEN
-        Assertions.assertEquals(patientListFromFile.size(),patientList.size());
+        Assertions.assertEquals(patientListFromFile.size(), patientList.size());
     }
+
     @Test
     void checkLoadMethod() throws IOException {
         //GIVEN
