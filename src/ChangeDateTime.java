@@ -32,6 +32,7 @@ public class ChangeDateTime {
             for (Appointment appointment : Setup.getAppointmentList()) {
                 if (appointmentId == appointment.getAppointmentId()) {
                     Appointment changedAppointment = new Appointment(appointment.getAppointmentId(), appointment.getPatient(), appointment.getTypeOfExamination(), appointment.getDate(), appointment.getTime(), appointment.getDoctor());
+
                     do {
                         System.out.print("Enter new date for appointment in the format DD-MM-YYYY: ");
                         String enteredDate = sc.nextLine();
