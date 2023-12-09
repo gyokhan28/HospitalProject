@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class PatientMenu {
@@ -43,8 +42,7 @@ public class PatientMenu {
                 case "2" -> {
                     System.out.println("*** Showing recorded hours: ***");
                     System.out.println();
-                    PreviewOfRecordedHours recordedHours = new PreviewOfRecordedHours();
-                    recordedHours.showRecordedHours(patient.getId());
+                    PreviewOfRecordedHours.showRecordedHours(patient.getId());
                     showMenu(patient);
                 }
                 case "3" -> {
