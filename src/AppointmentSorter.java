@@ -33,10 +33,7 @@ public class AppointmentSorter {
         do {
             choice = sc.next();
             switch (choice) {
-                case "0" -> {
-                    DoctorMenu doctorMenu = new DoctorMenu(personalDoctorId);
-                    doctorMenu.showMenu();
-                }
+                case "0" -> doctorMenu.showMenu();
                 case "1" -> {
                     setOrderType("Ascending");
                     handleMenuChoice();

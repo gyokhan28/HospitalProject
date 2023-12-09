@@ -44,8 +44,8 @@ public class AppointmentAdder {
 
         boolean flagForTime = false;
         int time =0;
+        System.out.print("Enter time of examination:");
         do {
-            System.out.print("Enter time of examination:");
             int enteredTime = sc.nextInt();
             if(enteredTime>=900 &&enteredTime<=1700){
                 time=enteredTime;
