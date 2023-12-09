@@ -12,5 +12,6 @@ public class LoginAdmin {
             password = sc.nextLine();
         }
         AdminMenu.showMenu();
+        AdminMenu.chooseAnOption();
     }
 }

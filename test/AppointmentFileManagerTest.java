@@ -48,6 +48,8 @@ public class AppointmentFileManagerTest {
         appointments.add(new Appointment(4, patient3, "initial", "15-05-2023", 1515, doctor4));
 
         //WHEN
+        appointmentListFromFile = AppointmentsFileManager.loadAppointments("Appointments For Test.csv");
+
 
         //THEN
         Assertions.assertNotEquals(appointments, appointmentListFromFile);
