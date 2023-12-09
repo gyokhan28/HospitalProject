@@ -1,4 +1,4 @@
-public enum  Specialties {
+public enum Specialities {
      ANESTHESIOLOGY,
      INTERNAL_DISEASES,
      GASTROENTEROLOGY,

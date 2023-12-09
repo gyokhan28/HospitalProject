@@ -26,9 +26,7 @@ public class DoctorMenu {
                     appointmentDisplayer.loadAppointmentsForSelectedDoctor();
                     showMenu();
                 }
-                case "2" -> {
-                    appointmentSorter.sortChoice();
-                }
+                case "2" -> appointmentSorter.sortChoice();
                 case "3" -> {
                     PatientGroup.showGroupingMenu();
                     showMenu();

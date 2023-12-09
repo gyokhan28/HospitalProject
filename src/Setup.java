@@ -7,7 +7,7 @@ public abstract class Setup {
     private static List<Appointment> appointmentList;
 
     public static void loadLists() throws IOException {
-        doctorList = DoctorFileManager.loadDoctors();
+        doctorList = DoctorFileManager.loadDoctors("Doctors.csv");
         patientList = PatientFileManager.loadPatients("Patients.csv");
         appointmentList = AppointmentsFileManager.loadAppointments("Appointments.csv");
     }

@@ -7,6 +7,7 @@ public class AppointmentAdderTest {
     @Test
     void checkMethodForReturningLastID() throws IOException {
         //GIVEN
+        Setup.loadLists();
 
         //WHEN
         int actual = AppointmentAdder.returnLastID();

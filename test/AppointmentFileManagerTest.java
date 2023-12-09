@@ -8,23 +8,25 @@ import java.util.List;
 
 public class AppointmentFileManagerTest {
 
+    List<Appointment> appointmentListFromFile;
     @BeforeEach
     public void setup() throws IOException {
         Setup.loadLists();
+        appointmentListFromFile = AppointmentsFileManager.loadAppointments("Appointments For Test.csv");
     }
 
-    Doctor doctor1 = new Doctor(1, "Stoyan", "Kamenov", "ANESTHESIOLOGY");
-    Doctor doctor2 = new Doctor(2, "Ivaylo", "Petrov", "INTERNAL DISEASES");
-    Doctor doctor3 = new Doctor(3, "Georgi", "Hristov", "GASTROENTEROLOGY");
-    Doctor doctor4 = new Doctor(4, "Vlado", "Borisov", "ENDOCRINOLOGY");
-    Doctor doctor5 = new Doctor(5, "Vlado", "Nikolov", "CARDIOLOGY");
-    Doctor doctor6 = new Doctor(6, "Boris", "Jorov", "DERMATOLOGY");
-    Doctor doctor7 = new Doctor(7, "Trayan", "Marinov", "NEUROLOGY");
-    Doctor doctor8 = new Doctor(8, "Gospodin", "Radoslavov", "RHEUMATOLOGY");
-    Doctor doctor9 = new Doctor(9, "Nikola", "Rosenov", "ENDOCRINOLOGY");
-    Doctor doctor10 = new Doctor(10, "Borislav", "Marchev", "CARDIOLOGY");
-    Doctor doctor11 = new Doctor(11, "Deyan", "Dobrev", "DERMATOLOGY");
-    Doctor doctor12 = new Doctor(12, "Ivan", "Ivanov", "INTERNAL_DISEASES");
+    Doctor doctor1 = new Doctor(1, "Stoyan", "Kamenov", Specialities.ANESTHESIOLOGY);
+    Doctor doctor2 = new Doctor(2, "Ivaylo", "Petrov", Specialities.INTERNAL_DISEASES);
+    Doctor doctor3 = new Doctor(3, "Georgi", "Hristov", Specialities.GASTROENTEROLOGY);
+    Doctor doctor4 = new Doctor(4, "Vlado", "Borisov", Specialities.ENDOCRINOLOGY);
+    Doctor doctor5 = new Doctor(5, "Vlado", "Nikolov", Specialities.CARDIOLOGY);
+    Doctor doctor6 = new Doctor(6, "Boris", "Jorov", Specialities.DERMATOLOGY);
+    Doctor doctor7 = new Doctor(7, "Trayan", "Marinov", Specialities.NEUROLOGY);
+    Doctor doctor8 = new Doctor(8, "Gospodin", "Radoslavov", Specialities.RHEUMATOLOGY);
+    Doctor doctor9 = new Doctor(9, "Nikola", "Rosenov", Specialities.ENDOCRINOLOGY);
+    Doctor doctor10 = new Doctor(10, "Borislav", "Marchev", Specialities.CARDIOLOGY);
+    Doctor doctor11 = new Doctor(11, "Deyan", "Dobrev", Specialities.DERMATOLOGY);
+    Doctor doctor12 = new Doctor(12, "Ivan", "Ivanov", Specialities.INTERNAL_DISEASES);
     Patient patient1 = new Patient(1, "Maria", "Petrova", 25);
     Patient patient2 = new Patient(2, "Ivan", "Ivanov", 34);
     Patient patient3 = new Patient(3, "Konstantin", "Marinov", 34);
@@ -41,11 +43,11 @@ public class AppointmentFileManagerTest {
         //GIVEN
         List<Appointment> appointments = new ArrayList<>();
         appointments.add(new Appointment(1, patient7, "initial", "15-03-2023", 1030, doctor1));
-        appointments.add(new Appointment(2, patient5, "consultation", "18 - 04 - 2023", 1520, doctor2));
-        appointments.add(new Appointment(3, patient4, "secondary", "15 - 05 - 2023", 1230, doctor3));
-        appointments.add(new Appointment(4, patient3, "initial", "15 - 05 - 2023", 1515, doctor4));
+        appointments.add(new Appointment(2, patient5, "consultation", "18-04-2023", 1520, doctor2));
+        appointments.add(new Appointment(3, patient4, "secondary", "15-05-2023", 1230, doctor3));
+        appointments.add(new Appointment(4, patient3, "initial", "15-05-2023", 1515, doctor4));
+
         //WHEN
-        List<Appointment> appointmentListFromFile = Setup.getAppointmentList();
 
         //THEN
         Assertions.assertNotEquals(appointments, appointmentListFromFile);
@@ -63,9 +65,10 @@ public class AppointmentFileManagerTest {
         appointments.add(new Appointment(6, patient10, "secondary", "21-05-2023", 1120, doctor2));
         appointments.add(new Appointment(7, patient1, "consultation", "14-05-2023", 1310, doctor12));
         appointments.add(new Appointment(8, patient8, "secondary", "13-01-2023", 1525, doctor3));
-        //WHEN
-        List<Appointment> appointmentListFromFile = Setup.getAppointmentList();
 
+        //WHEN
+
+        //THEN
         Assertions.assertEquals(appointmentListFromFile, appointments);
     }
 
@@ -78,8 +81,8 @@ public class AppointmentFileManagerTest {
         appointments.add(new Appointment(3, patient4, "secondary", "15-05-2023", 1230, doctor8));
 
         //WHEN
-        AppointmentsFileManager.writeAppointments(appointments, "Appointments For Test.csv");
-        List<Appointment> appointmentListFromFile = AppointmentsFileManager.loadAppointments("Appointments For Test.csv");
+        AppointmentsFileManager.writeAppointments(appointments, "Appointments For Test 2.csv");
+        appointmentListFromFile = AppointmentsFileManager.loadAppointments("Appointments For Test 2.csv");
 
         //THEN
         Assertions.assertEquals(appointmentListFromFile, appointments);
@@ -110,18 +113,5 @@ public class AppointmentFileManagerTest {
 
         //THEN
         Assertions.assertNotNull(appointments);
-    }
-
-    @Test
-    void testMethod() {
-        //GIVEN
-        List<Appointment> numbers = new ArrayList<>();
-        numbers.add(new Appointment(1, patient7, "initial", "15-03-2023", 1030, doctor12));
-
-        List<Appointment> numbers2 = new ArrayList<>();
-        numbers2.add(new Appointment(1, patient7, "initial", "15-03-2023", 1030, doctor12));
-
-
-        Assertions.assertEquals(numbers, numbers2);
     }
 }
