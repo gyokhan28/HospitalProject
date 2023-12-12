@@ -34,7 +34,7 @@ public class AddNewDoctor {
         System.out.println();
     }
 
-    private static int returnLastID() {
+    public static int returnLastID() {
         return Setup.getDoctorList().get(Setup.getDoctorList().size() - 1).getId();
     }
 
