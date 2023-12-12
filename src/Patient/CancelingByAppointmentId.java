@@ -1,3 +1,9 @@
+package Patient;
+
+import Appointment.Appointment;
+import FileManagement.AppointmentsFileManager;
+import Main.Setup;
+
 import java.io.IOException;
 import java.util.Scanner;
 

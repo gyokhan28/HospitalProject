@@ -1,10 +1,16 @@
+package Login;
+
+import Doctor.Doctor;
+import Main.Setup;
+import Doctor.DoctorMenu;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class LoginDoctor {
     protected static Scanner sc;
 
-    protected static void verify() throws IOException {
+    public static void verify() throws IOException {
         sc = new Scanner(System.in);
         int id = getIdFromUser();
         System.out.print("Enter name: ");
@@ -41,7 +47,7 @@ public class LoginDoctor {
     }
 
     public static Doctor returnDoctor(int doctorId){
-        for(Doctor doctor:Setup.getDoctorList()){
+        for(Doctor doctor: Setup.getDoctorList()){
             if(doctor.getId()==doctorId){
                 return doctor;
             }

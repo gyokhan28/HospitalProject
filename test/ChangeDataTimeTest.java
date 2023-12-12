@@ -1,3 +1,10 @@
+import FileManagement.DoctorFileManager;
+import Patient.ChangeDateTime;
+import Appointment.Appointment;
+import FileManagement.AppointmentsFileManager;
+import Main.Setup;
+import Doctor.Doctor;
+import Patient.Patient;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

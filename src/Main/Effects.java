@@ -1,3 +1,5 @@
+package Main;
+
 public class Effects {
     public static void wait(int duration){
         try {

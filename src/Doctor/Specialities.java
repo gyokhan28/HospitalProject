@@ -1,3 +1,5 @@
+package Doctor;
+
 public enum Specialities {
      ANESTHESIOLOGY,
      INTERNAL_DISEASES,

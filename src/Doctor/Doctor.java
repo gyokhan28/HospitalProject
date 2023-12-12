@@ -1,3 +1,5 @@
+package Doctor;
+
 import java.util.Objects;
 
 public class Doctor {

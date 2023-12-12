@@ -1,3 +1,9 @@
+package Appointment;
+
+import Patient.Patient;
+import Doctor.DoctorMenu;
+import Main.Setup;
+
 import java.io.IOException;
 import java.util.*;
 

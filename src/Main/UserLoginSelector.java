@@ -1,3 +1,9 @@
+package Main;
+
+import Login.LoginAdmin;
+import Login.LoginDoctor;
+import Login.LoginPatient;
+
 import java.io.IOException;
 import java.util.Scanner;
 

@@ -1,7 +1,10 @@
+import FileManagement.DoctorFileManager;
+import Main.Setup;
+import Doctor.Doctor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import Doctor.Specialities;
 import java.io.IOException;
 import java.util.List;
 

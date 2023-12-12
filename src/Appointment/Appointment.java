@@ -1,4 +1,7 @@
-import javax.print.Doc;
+package Appointment;
+
+import Doctor.Doctor;
+import Patient.Patient;
 
 public class Appointment {
     private int appointmentId;
