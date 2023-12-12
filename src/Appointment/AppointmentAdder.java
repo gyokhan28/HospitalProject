@@ -1,9 +1,14 @@
+package Appointment;
+
+import Doctor.Doctor;
+import Patient.Patient;
+import Main.Setup;
+import Login.LoginPatient;
+import Login.LoginDoctor;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,7 +27,7 @@ public class AppointmentAdder {
         String date = "";
         boolean flagForData = false;
         do {
-            System.out.print("Enter date of examination in the format DD-MM-YYYY: ");
+            System.out.print("Enter date of examination (in the format DD-MM-YYYY): ");
             String enteredDate = sc.nextLine();
             Matcher matcher = pattern.matcher(enteredDate);
             if (matcher.matches()) {
@@ -55,10 +60,10 @@ public class AppointmentAdder {
             }
         } while (!flagForTime);
             int doctorID = returnDoctorID();
-            System.out.println("Last ID" + lastID + " Examination type " + examinationType + " Date " + date + " time " + time + " doctor ID" + doctorID);
+            System.out.println("Last ID: " + lastID + ", Examination type: " + examinationType + ", Date: " + date + ", Time: " + time + ", doctor ID:" + doctorID);
 
-            Setup.getAppointmentList().add(new Appointment(returnLastID()+1,patient,examinationType,date,time,LoginDoctor.returnDoctor(doctorID)));
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter("Appointments copy.csv", true))) {
+            Setup.getAppointmentList().add(new Appointment(returnLastID()+1,patient,examinationType,date,time, LoginDoctor.returnDoctor(doctorID)));
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("Appointments.csv", true))) {
 
                 bw.write(returnLastID() + 1 + "," + iDPatient + "," + examinationType + "," + date + "," + time + "," + doctorID);
                 bw.newLine();
@@ -66,7 +71,7 @@ public class AppointmentAdder {
                 System.out.println("File is updated!");
                 System.out.println();
             } catch (IOException e) {
-                System.err.println("Error writing in file: " + e.getMessage());
+                System.err.println("Error while trying to write in file: " + e.getMessage());
             }
 
         }
@@ -109,7 +114,7 @@ public class AppointmentAdder {
                     return doctor.getId();
                 }
             }
-            System.out.println("There is no doctor with that name. Please, try again");
+            System.out.println("There is no doctor with that name. Please, try again!");
             return returnDoctorID();
         }
 

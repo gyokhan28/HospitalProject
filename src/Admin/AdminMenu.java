@@ -1,13 +1,17 @@
+package Admin;
+
+import Main.Effects;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class AdminMenu {
 
-    public AdminMenu() throws IOException {
+    public AdminMenu() {
         showMenu();
     }
 
-    public static void showMenu() throws IOException {
+    public static void showMenu() {
         System.out.println("Logged in as Administrator!");
         System.out.println("1. Add new doctor");
         System.out.println("2. Add new patient");

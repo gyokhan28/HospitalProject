@@ -1,3 +1,10 @@
+package Doctor;
+
+import Appointment.AppointmentDisplayer;
+import Appointment.AppointmentSorter;
+import Main.Effects;
+import Main.Setup;
+
 import java.io.IOException;
 import java.util.Scanner;
 

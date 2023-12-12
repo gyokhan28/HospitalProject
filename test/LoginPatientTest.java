@@ -1,10 +1,11 @@
+import Main.Setup;
+import Login.LoginPatient;
+import Patient.Patient;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.List;
 
 public class LoginPatientTest {
     @BeforeEach

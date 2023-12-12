@@ -1,6 +1,11 @@
+package FileManagement;
+
+import Doctor.Doctor;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import Doctor.Specialities;
 
 public class DoctorFileManager {
 

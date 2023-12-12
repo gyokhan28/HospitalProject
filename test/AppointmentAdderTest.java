@@ -1,3 +1,5 @@
+import Appointment.AppointmentAdder;
+import Main.Setup;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

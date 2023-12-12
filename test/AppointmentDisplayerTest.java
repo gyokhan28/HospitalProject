@@ -1,3 +1,9 @@
+import Appointment.Appointment;
+import Appointment.AppointmentDisplayer;
+import FileManagement.AppointmentsFileManager;
+import FileManagement.DoctorFileManager;
+import Main.Setup;
+import Doctor.Doctor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

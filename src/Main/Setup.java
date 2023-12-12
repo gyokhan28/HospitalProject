@@ -1,3 +1,12 @@
+package Main;
+
+import Appointment.Appointment;
+import Doctor.Doctor;
+import Patient.Patient;
+import FileManagement.DoctorFileManager;
+import FileManagement.PatientFileManager;
+import FileManagement.AppointmentsFileManager;
+
 import java.io.IOException;
 import java.util.List;
 

@@ -1,9 +1,14 @@
+package Doctor;
+
+import Appointment.Appointment;
+import Main.Setup;
+
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class PatientGroup {
 
-    protected static void showGroupingMenu(){
+    public static void showGroupingMenu(){
         System.out.print("\n1.Group by doctor name\n2.Group by speciality\n3.Group by date of appointment:\nEnter your choice:");
         Scanner sc = new Scanner(System.in);
         String choice;
@@ -24,9 +29,11 @@ public class PatientGroup {
             System.out.print("\nDr." + doctor.getFirstName() + " " + doctor.getLastName() + " (" + doctor.getSpeciality() + ") :\n");
             Setup.getAppointmentList().stream()
                     .filter(appointment -> doctor.getId() == appointment.getDoctor().getId())
-                    .forEach(appointment -> Setup.getPatientList().stream()
-                            .filter(patient -> patient.getId() == appointment.getPatient().getId())
-                            .forEach(patient -> System.out.print(patient + "\n")));
+                    .forEach(appointment -> {
+                        Setup.getPatientList().stream()
+                                .filter(patient -> patient.getId() == appointment.getPatient().getId())
+                                .forEach(patient -> System.out.print(patient + "\n"));
+                    });
             System.out.println("----------------------------");
         });
     }
@@ -37,9 +44,12 @@ public class PatientGroup {
             System.out.println(doctor.getSpeciality() + ":");
             Setup.getAppointmentList().stream()
                     .filter(appointment -> doctor.getId() == appointment.getDoctor().getId())
-                    .forEach(appointment -> Setup.getPatientList().stream()
-                            .filter(patient -> patient.getId() == appointment.getPatient().getId())
-                            .forEach(patient -> System.out.print(patient + "\n")));
+                    .forEach(appointment -> {
+                        Setup.getPatientList().stream()
+                                .filter(patient -> patient.getId() == appointment.getPatient().getId())
+                                .forEach(patient -> System.out.print(patient + "\n"));
+
+                    });
             System.out.println("----------------------------");
         });
     }
@@ -49,9 +59,11 @@ public class PatientGroup {
         Setup.getAppointmentList().stream().collect(Collectors.groupingBy(Appointment::getDate))
                 .forEach((date, appointments) -> {
                     System.out.println(date + ":");
-                    appointments.forEach(appointment -> Setup.getPatientList().stream()
-                            .filter(patient -> patient.getId() == appointment.getPatient().getId())
-                            .forEach(patient -> System.out.print(patient + "\n")));
+                    appointments.forEach(appointment -> {
+                        Setup.getPatientList().stream()
+                                .filter(patient -> patient.getId() == appointment.getPatient().getId())
+                                .forEach(patient -> System.out.print(patient + "\n"));
+                    });
                     System.out.println("----------------------------");
                 });
     }

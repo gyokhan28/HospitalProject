@@ -1,3 +1,7 @@
+import Appointment.Appointment;
+import FileManagement.AppointmentsFileManager;
+import Main.Setup;
+import Patient.PreviewOfRecordedHours;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

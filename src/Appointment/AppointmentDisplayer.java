@@ -1,3 +1,8 @@
+package Appointment;
+
+import Doctor.Doctor;
+import Main.Setup;
+
 import java.util.List;
 import java.util.Scanner;
 

@@ -1,14 +1,17 @@
+package Login;
+
+import Main.Setup;
+import Patient.Patient;
+import Patient.PatientMenu;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class LoginPatient {
     public LoginPatient() {
     }
 
-    protected static void verify() throws IOException {
+    public static void verify() throws IOException {
         System.out.print("Enter patient ID: ");
         Scanner sc = new Scanner(System.in);
         int id = 0;
@@ -41,7 +44,7 @@ public class LoginPatient {
         }
     }
 
-    protected static Patient returnPatient(int patientID) {
+    public static Patient returnPatient(int patientID) {
         for (Patient patient : Setup.getPatientList()) {
             if (patientID == patient.getId()) {
                 return patient;

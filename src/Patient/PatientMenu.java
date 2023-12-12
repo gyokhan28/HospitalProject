@@ -1,3 +1,10 @@
+package Patient;
+
+import Appointment.Appointment;
+import Appointment.AppointmentAdder;
+import Main.Effects;
+import Main.Setup;
+
 import java.io.IOException;
 import java.util.Scanner;
 

@@ -1,3 +1,9 @@
+import Appointment.Appointment;
+import FileManagement.AppointmentsFileManager;
+import Main.Setup;
+import Doctor.Doctor;
+import Doctor.Specialities;
+import Patient.Patient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
