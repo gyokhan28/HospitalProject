@@ -31,7 +31,7 @@ public class AddNewDoctor {
                 Specialities.valueOf(speciality);
                 break;
             } catch (IllegalArgumentException ignored) {
-                System.out.print("There's no such speciality, try again:");
+                System.out.print("There is no such speciality, try again:");
             }
             speciality = sc.next();
         }
