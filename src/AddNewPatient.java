@@ -24,7 +24,7 @@ public class AddNewPatient {
         System.out.println("Тhe new patient is added!");
         System.out.println();
     }
-    private int returnLastID() {
+    public static int returnLastID() {
         return Setup.getPatientList().get(Setup.getPatientList().size() - 1).getId();
     }
     private void writePatientInFile(List<Patient> patients) throws IOException {
