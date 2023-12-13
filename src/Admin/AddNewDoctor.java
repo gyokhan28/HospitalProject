@@ -38,7 +38,7 @@ public class AddNewDoctor {
         newDoctor.setSpeciality(Specialities.valueOf(speciality.toUpperCase()));
         newDoctorsList.add(newDoctor);
         writeDoctorInFile(newDoctorsList);
-        System.out.println("Тhe new doctor (" + newDoctor.getFirstName() + " " + newDoctor.getLastName() + ") was added successfully!");
+        System.out.println("Тhe new doctor (" + newDoctor.getFirstName() + " " + newDoctor.getLastName() + ", ID: " + newDoctor.getId() + ") was added successfully!");
         System.out.println();
     }
 

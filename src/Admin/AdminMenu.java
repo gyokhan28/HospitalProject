@@ -12,7 +12,6 @@ public class AdminMenu {
     }
 
     public static void showMenu() {
-        System.out.println("Logged in as Administrator!");
         System.out.println("1. Add new doctor");
         System.out.println("2. Add new patient");
         System.out.println("0. Exit");
@@ -30,6 +29,7 @@ public class AdminMenu {
                     System.out.println();
                     AddNewDoctor.addNewDoctor();
                     showMenu();
+                    chooseAnOption();
                 }
                 case "2" -> {
                     System.out.println("*** Add new patient ***");
@@ -37,6 +37,7 @@ public class AdminMenu {
                     AddNewPatient addNewPatient = new AddNewPatient();
                     addNewPatient.addNewPatient();
                     showMenu();
+                    chooseAnOption();
                 }
                 case "0" -> {
                     System.out.println("Leaving the Admin menu...");

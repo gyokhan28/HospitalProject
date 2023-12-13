@@ -76,7 +76,7 @@ public class Appointment {
                 ", Patient ID:" + patient.getId() +
                 ", Examination type:" + typeOfExamination +
                 ", Date:" + date +
-                ", Time:" + time +
+                ", Time: " + time/100 + ":" +time%100 +
                 ", Doctor ID:" + doctor.getId();
     }
 

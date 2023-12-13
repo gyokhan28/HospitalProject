@@ -36,9 +36,10 @@ public class AddNewPatient {
         newPatient.setAge(age);
         Setup.getPatientList().add(newPatient);
         writePatientInFile(Setup.getPatientList());
-        System.out.println("Тhe new patient ("+newPatient.getFirstName()+" "+newPatient.getLastName()+") was added successfully!");
+        System.out.println("Тhe new patient (" + newPatient.getFirstName() + " " + newPatient.getLastName() + ", ID:" + newPatient.getId() + ") was added successfully!");
         System.out.println();
     }
+
     public static int returnLastID() {
         return Setup.getPatientList().get(Setup.getPatientList().size() - 1).getId();
     }

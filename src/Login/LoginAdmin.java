@@ -15,6 +15,7 @@ public class LoginAdmin {
             System.out.print("Incorrect Administrator password! Please try again:");
             password = sc.nextLine();
         }
+        System.out.println("Logged in as Administrator!");
         AdminMenu.showMenu();
         AdminMenu.chooseAnOption();
     }
