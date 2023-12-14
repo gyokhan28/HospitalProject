@@ -24,7 +24,6 @@ public class AppointmentAdder {
         String regex = "\\d{2}-\\d{2}-\\d{4}";
         Pattern pattern = Pattern.compile(regex);
 
-        int lastID = returnLastID();
         String examinationType = returnTypeOfExamination();
 
         String date = "";
@@ -42,7 +41,7 @@ public class AppointmentAdder {
                     date = enteredDate;
                     flagForData = true;
                 } else {
-                    System.out.println("Invalid Data. Please try again.");
+                    System.out.println("An invalid date was entered! Please try again.");
                 }
 
             } else {
@@ -118,10 +117,13 @@ public class AppointmentAdder {
 
     public static int returnDoctorID() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Please enter the name of the doctor you wish to see: ");
-        String doctorName = sc.next();
+        System.out.println("Please enter the doctor's names:");
+        System.out.print("First name: ");
+        String docFirstName = sc.next();
+        System.out.print("Last name: ");
+        String docLastName = sc.next();
         for (Doctor doctor : Setup.getDoctorList()) {
-            if (doctorName.equalsIgnoreCase(doctor.getFirstName())) {
+            if (docFirstName.equalsIgnoreCase(doctor.getFirstName()) && docLastName.equalsIgnoreCase(doctor.getLastName())) {
                 return doctor.getId();
             }
         }
