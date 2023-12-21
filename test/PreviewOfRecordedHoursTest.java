@@ -39,7 +39,7 @@ public class PreviewOfRecordedHoursTest {
         //WHEN
         PreviewOfRecordedHours.showRecordedHours(id);
         //THEN
-        String exception = "Appointment ID: 1 Type of examination: initial Date: 15-03-2023 Time: 1030 Doctor ID: 12";
+        String exception = "Appointment ID: 1 Type of examination: Initial Date: 15-03-2023 Time: 1030 Doctor ID: 12";
         Assertions.assertEquals(exception.trim(), outContent.toString().trim());
     }
 

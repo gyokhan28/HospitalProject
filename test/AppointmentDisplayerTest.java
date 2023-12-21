@@ -42,7 +42,7 @@ public class AppointmentDisplayerTest {
         appointmentDisplayer.showAppointments(1);
 
         //THEN
-        String exception = "App. ID:5, patient: Ivan Ivanov, Ex. type: consultation, Date: 13-05-2023, Time: 1610";
+        String exception = "App. ID:5, patient: Ivan Ivanov, Ex. type: Consultation, Date: 13-05-2023, Time: 1610";
         Assertions.assertEquals(exception.trim(), outContent.toString().trim());
 
     }
@@ -56,7 +56,7 @@ public class AppointmentDisplayerTest {
         appointmentDisplayer.showAppointments(1);
 
         //THEN
-        String exception = "Showing appointments of Dr.Stoyan Kamenov (ID 1):\nApp. ID:5, patient: Ivan Ivanov, Ex. type: consultation, Date: 13-05-2023, Time: 1610";
+        String exception = "Showing appointments of Dr.Stoyan Kamenov (ID 1):\nApp. ID:5, patient: Ivan Ivanov, Ex. type: Consultation, Date: 13-05-2023, Time: 1610";
         Assertions.assertEquals(exception.trim(), outContent.toString().trim());
 
     }

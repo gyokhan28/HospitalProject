@@ -29,7 +29,7 @@ public class AdminMenuTest {
         //WHEN
         AdminMenu.showMenu();
         //THEN
-        String exception = "Logged in as Administrator!\n1. Add new doctor\n2. Add new patient\n0. Exit";
+        String exception = "1. Add new doctor\n2. Add new patient\n0. Exit";
         Assertions.assertEquals(exception.trim(), outContent.toString().trim());
     }
 }
